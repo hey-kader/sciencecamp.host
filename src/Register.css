@@ -1,0 +1,11 @@
+div {
+	display: inline| flex;
+}
+
+#register {
+	margin: 200px;
+}
+
+form {
+	background: gray;
+}

@@ -46,7 +46,7 @@ function Login () {
 						headers: {'Content-Type': 'application/json'},
 						body: JSON.stringify({hash: String(bcrypt.hashSync(user.current.value+pass.current.value))})
 					}
-					fetch('http://192.168.1.29:3000/login/auth/', opts)
+					fetch('http://192.168.1.30:3000/login/auth/', opts)
 						.then(response => response.json())
 						.then(data => console.log(data))
 
