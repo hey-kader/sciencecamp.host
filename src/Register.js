@@ -6,7 +6,7 @@ function Register () {
 			<div id="register">
 				<form action="post" onSubmit={(e) => {
 					e.preventDefault()
-					console.log('submitted registration!')
+					console.log('submitted registration!')}
 				}>
 					<input type="username" placeholder="<username>" />
 						<br />

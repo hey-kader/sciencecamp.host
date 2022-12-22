@@ -5,6 +5,7 @@ import That from './That.js'
 import Home from './Home.js'
 import Menu from './Menu'
 import Login from './Login'
+import Register from './Register'
 import React, {useEffect, useState} from 'react'
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
 
@@ -114,6 +115,9 @@ function App() {
 					<code> <img src="../favicon.ico"/> login </code>
 					</Link>
 					<br />
+					<Link to="/register">
+						<img src="../favicon.ico" alt="register bottle" /> <code>register </code>
+					</Link>
 					<div id="connection-status">
 					</div>
           <Routes>
@@ -123,6 +127,7 @@ function App() {
 						<Route path="/menu/this" element={<This />} />
 						<Route path="/menu/that" element={<That />} />
 						<Route path="login" element={<Login/>} />
+						<Route path="register" element={<Register/>} />
           </Routes>
         </BrowserRouter>
       </div>
