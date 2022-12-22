@@ -1,8 +1,13 @@
 #nav {
 	display: flex;
+	padding: 1rem;
 }
 #nav img {
 	margin: 4.5rem 1.25rem 0rem 0rem;
+}
+
+div {
+	margin: auto;
 }
 
 

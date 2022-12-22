@@ -1,3 +1,11 @@
+form {
+	border-style: "groove";
+	margin: "auto";
+	padding: "10px";
+	display: "inline|flex";
+	height: "28rem";
+	width: "22rem";
+}
 div {
 	display: inline| flex;
 }

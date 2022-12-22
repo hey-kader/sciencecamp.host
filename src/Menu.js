@@ -23,7 +23,7 @@ function Menu () {
 
 	return (
 		<div id="nav">
-			<h3>welcome</h3>
+			<h3>menu</h3>
 			<Link to="home" onMouseEnter={() => {document.getElementById('home').src = flipflop}}>
 				<img className="header-logo" id="home" src="this.png" alt="header png logo" />
 				<h5> home </h5>

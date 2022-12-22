@@ -1,3 +1,6 @@
+div {
+	display: inline| flex;
+}
 #login {
 	margin: 200px;
 }
