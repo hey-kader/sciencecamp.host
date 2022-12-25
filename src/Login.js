@@ -2,8 +2,6 @@ import React, {useRef, useState, useEffect} from 'react'
 import bcrypt from 'bcryptjs'
 import './Login.css'
 
-
-
 function Login () {
 	const pass = useRef();
 	const user = useRef();
@@ -18,18 +16,17 @@ function Login () {
 
 	const style = {
 		borderStyle: "groove",
+		color: "grey",
 		margin: "auto",
-		padding: "15px",
+		padding: "5px",
 		display: "inline|flex",
-		height: "2.9rem",
-		width: "8.9rem",
-		color: 'blue'
+		height: "3.9rem",
+		width: "9.3rem",
 	}
 
 
 		return (
 			<div>
-				<h2 style={{background: 'blue'}}>login</h2>
 
 			<div id="login">
 				<form style={style} onSubmit={
@@ -53,8 +50,7 @@ function Login () {
 						fetch('http://192.168.1.30:3000/login/auth/', opts)
 							.then(response => response.json())
 							.then(data => console.log(data))
-
-					// make a post request
+						// make a post request
 
 					}
 				}>
