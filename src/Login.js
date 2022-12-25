@@ -1,4 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react'
+import {Link} from "react-router-dom"
 import bcrypt from 'bcryptjs'
 import './Login.css'
 
@@ -15,20 +16,25 @@ function Login () {
 
 
 	const style = {
-		borderStyle: "groove",
-		color: "grey",
 		margin: "auto",
-		padding: "5px",
-		display: "inline|flex",
-		height: "3.9rem",
-		width: "9.3rem",
+		display: "inlineBlock",
+		padding: "0.8rem 0.8rem 0 0.8rem",
+	
+		background: "red",
+		opacity: "40%"
 	}
 
 
 		return (
 			<div>
 
+
+				<h2>login</h2>
+
+				<h3>register</h3>
+
 			<div id="login">
+
 				<form style={style} onSubmit={
 					(event) => {
 						console.log("lotzo!")
@@ -54,14 +60,25 @@ function Login () {
 
 					}
 				}>
+				<Link to="/">
+					<legend><h2 style={{color: 'lightgrey', background: 'red', opacity: '90%'}}>login</h2></legend>
+				</Link>
 
-					<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" placeholder="<username here>"/>
-				<input ref={pass} type="password" placeholder="<password there>" />
-					<button type="submit" value="submit" id="submit" hidden >submit</button>
-				<div id="hash"></div>
+					<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
+						<br />
+				<input ref={pass} type="password" />
+					<br />
+					<br />
+					<button type="radio" id="autologin"></button>
+					<br />
+					<input type="submit" value="submit" id="submit"/>
+					
+					
 				<br />
 				</form>
+
 			</div>
+				<div id="hash"></div>
 		</div>
 		);
 }

@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import Form from './Form'
 
 function This () {	
 	let navigate = useNavigate()
 	return (
+
 		<div id="this">
+			<Form />
 			<aside>
 				<button onClick={() => {navigate('/menu')}}>X</button>
 			</aside>

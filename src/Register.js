@@ -1,10 +1,12 @@
-import react, {useState} from "react"
+import {useState} from "react"
 import "./Register.css"
 import {bcryptjs} from "bcryptjs" 
 
 function Register () {
 
 	const [toggle, setToggle] = useState()
+
+
 
 	const style = {
 		borderStyle: "groove",
@@ -14,7 +16,8 @@ function Register () {
 	}
 		return (
 				<div>
-					<div id="register">
+					<h2 class="sub">register</h2>
+					<h3>login</h3>
 						<form style={style} action="post" onSubmit={(e) => {
 							e.preventDefault()
 							console.log('submitted registration!')
@@ -25,13 +28,9 @@ function Register () {
 								<input type="password" placeholder="<password>" required />
 								<br />
 								<input type="password"  placeholder="<(confirm)>" required />
-								<br />
-								<input type="image" />
-								<input type="submit" hidden />
+								<input type="submit" />
 						</form>
 					</div>
-					<code>{toggle}</code>
-				</div>
 		)
 }
 
