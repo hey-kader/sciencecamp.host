@@ -61,7 +61,7 @@ function Login () {
 					}
 				}>
 				<Link to="/">
-					<legend><h2 style={{color: 'lightgrey', background: 'red', opacity: '90%'}}>login</h2></legend>
+					<legend><h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>login</h2></legend>
 				</Link>
 
 					<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
@@ -69,7 +69,6 @@ function Login () {
 				<input ref={pass} type="password" />
 					<br />
 					<br />
-					<button type="radio" id="autologin"></button>
 					<br />
 					<input type="submit" value="submit" id="submit"/>
 					
