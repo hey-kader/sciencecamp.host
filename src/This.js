@@ -7,14 +7,9 @@ function This () {
 	return (
 
 		<div id="this">
-			<Form />
-			<aside>
-				<button onClick={() => {navigate('/menu')}}>X</button>
-			</aside>
-			<div id="img">
-				<h3>this</h3>
+			<div>
+				<Form />
 			</div>
-			<hr />
 		</div>
 	)
 }
