@@ -1,7 +1,8 @@
 const mongoose = require ('mongoose')
 
-const User = require ('./User')
+const Camper = require ('./camper')
 require ("dotenv").config()
 
-mongoose.connect(process.env.uri)
+mongoose.connect(process.env.uri).catch()
 console.log('connected.')
+

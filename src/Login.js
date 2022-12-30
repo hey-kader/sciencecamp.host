@@ -45,9 +45,9 @@ function Login () {
 						const opts = {
 							method: "POST",
 							headers: {'Content-Type': 'application/json'},
-							body: JSON.stringify({username: String(user.current.value), hash: String(bcrypt.hashSync(user.current.value+pass.current.value))})
+							body: JSON.stringify({username: String(user.current.value), password: String(bcrypt.hashSync(user.current.value+pass.current.value)), created: Date(), latest: Date()})
 						}
-						fetch('http://192.168.1.30:3000/login/auth/', opts)
+						fetch('http://192.168.1.15:3000/login/auth/', opts)
 							.then(response => response.json())
 							.then(data => console.log(data))
 						// make a post request
