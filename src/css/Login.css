@@ -23,6 +23,7 @@ h3 {
 input:focus, h3:focus {
 	background: white;
 }
+
 input{
 	color: black;
 	padding: 4px;
@@ -40,7 +41,6 @@ input:focus, h3:focus {
 form {
 	box-shadow: 10px 10px;
 	margin: 0px;
-	padding: 0px;
 	border-radius: 20px;
 	border-style: outset;
 }
