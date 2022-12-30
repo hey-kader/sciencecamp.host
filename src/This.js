@@ -1,17 +1,15 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import Form from './Form'
 
 function This () {	
 	let navigate = useNavigate()
 	return (
+
 		<div id="this">
-			<aside>
-				<button onClick={() => {navigate('/menu')}}>X</button>
-			</aside>
-			<div id="img">
-				<h3>this</h3>
+			<div>
+				<Form />
 			</div>
-			<hr />
 		</div>
 	)
 }

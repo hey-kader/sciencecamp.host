@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+	width: 100%;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  
+  background-color: red;
+  height: 24px;
+  line-height: 20px;
+  background-color: #eee;
+}
+
+#footer p {
+  margin-left: 5px;
+}

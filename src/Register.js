@@ -1,37 +1,49 @@
-import react, {useState} from "react"
-import "./Register.css"
+import {useState} from "react"
+import "./css/Register.css"
 import {bcryptjs} from "bcryptjs" 
+import Login from "./Login"
+import {Link} from "react-router-dom"
 
 function Register () {
 
 	const [toggle, setToggle] = useState()
 
-	const style = {
-		borderStyle: "groove",
-		margin: "auto",
-		padding: "5px",
-		color: "grey"
-	}
+		const style = {
+			margin: "auto",
+			display: "inlineBlock",
+			padding: "0.8rem 0.8rem 0 0.8rem",
+		
+			background: "red",
+			opacity: "40%"
+		}
+
 		return (
 				<div>
-					<div id="register">
-						<form style={style} action="post" onSubmit={(e) => {
+
+						<form style={{style}} action="post" onSubmit={(e) => {
 							e.preventDefault()
 							console.log('submitted registration!')
 							setToggle(toggle+1)
 						}}>
-							<input type="username" placeholder="<username>" />
-								<br />
-								<input type="password" placeholder="<password>" required />
-								<br />
-								<input type="password"  placeholder="<(confirm)>" required />
-								<br />
-								<input type="image" />
-								<input type="submit" hidden />
-						</form>
+					<Link to="/register">
+						<legend><h2>register</h2></legend>
+					</Link>
+					<Link to="/login">
+						<legend><h2 class="sub" style={{opacity: "20%", fontSize: "10px"}}>login</h2></legend>
+					</Link>
+					<br />
+
+					<input type="username" />
+						<br />
+						<input type="password" required />
+						<br />
+						<input type="password"   required />
+						<br />
+						<br />
+						<input id="submit" type="submit" />
+						<br />
+					</form>
 					</div>
-					<code>{toggle}</code>
-				</div>
 		)
 }
 

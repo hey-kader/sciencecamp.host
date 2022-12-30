@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react'
+import {Link} from "react-router-dom"
 import bcrypt from 'bcryptjs'
-import './Login.css'
+import './css/Login.css'
 
 function Login () {
 	const pass = useRef();
@@ -15,20 +16,19 @@ function Login () {
 
 
 	const style = {
-		borderStyle: "groove",
-		color: "grey",
 		margin: "auto",
-		padding: "5px",
-		display: "inline|flex",
-		height: "3.9rem",
-		width: "9.3rem",
+		display: "inlineBlock",
+		padding: "0.8rem 0.8rem 0 0.8rem",
+	
+		background: "red",
+		opacity: "40%"
 	}
 
 
 		return (
 			<div>
-
 			<div id="login">
+
 				<form style={style} onSubmit={
 					(event) => {
 						console.log("lotzo!")
@@ -45,23 +45,35 @@ function Login () {
 						const opts = {
 							method: "POST",
 							headers: {'Content-Type': 'application/json'},
-							body: JSON.stringify({hash: String(bcrypt.hashSync(user.current.value+pass.current.value))})
+							body: JSON.stringify({username: String(user.current.value), password: String(bcrypt.hashSync(user.current.value+pass.current.value)), created: Date(), latest: Date()})
 						}
-						fetch('http://192.168.1.30:3000/login/auth/', opts)
+						fetch('http://192.168.1.15:3000/login/auth/', opts)
 							.then(response => response.json())
 							.then(data => console.log(data))
 						// make a post request
 
 					}
 				}>
+				<Link to="/login">
+					<legend className="login-legend"><h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>login</h2></legend>
+				</Link>
+				<Link to="/register">
+					<legend className="register-legend"><h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>register</h2></legend>
+				</Link>
 
-					<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" placeholder="<username here>"/>
-				<input ref={pass} type="password" placeholder="<password there>" />
-					<button type="submit" value="submit" id="submit" hidden >submit</button>
-				<div id="hash"></div>
-				<br />
+					<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
+						<br />
+				<input ref={pass} type="password" />
+					<br />
+					<br />
+					<br />
+					<input type="submit" value="submit" id="submit"/>
+					
+					
 				</form>
+
 			</div>
+				<div id="hash"></div>
 		</div>
 		);
 }
