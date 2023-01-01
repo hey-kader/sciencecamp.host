@@ -50,7 +50,12 @@ function Login () {
 						}
 						fetch('http://192.168.1.30:3000/login/auth/', opts)
 							.then(response => response.json())
-							.then(data => console.log(data))
+							.then(data => {
+								console.log(data)
+								if (data.exists == true) {
+									document.getElementById('reset').style.background = "blue"	
+								}
+							})
 						// make a post request
 						document.getElementById("hash").innerHTML = document.URL
 
@@ -62,9 +67,12 @@ function Login () {
 				<Link to="/register">
 					<legend className="register-legend"><h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>register</h2></legend>
 				</Link>
+				<Link to="/login/reset">
+					<legend id="reset" className="reset"><h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>forgot my password</h2></legend>
+				</Link>
 
-					<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
-						<br />
+				<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
+				<br />
 				<input ref={pass} type="password" />
 					<br />
 					<br />

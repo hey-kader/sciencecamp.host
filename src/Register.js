@@ -61,8 +61,18 @@ function Register () {
 							}
 							fetch ('http://192.168.1.30:3000/register/auth/', opts)
 								.then(response => response.json())
-								.then(data => console.log(data))
-						}}>
+								.then(data => {
+									console.log(data)
+									if (data.exists == true) {
+										document.getElementById("console").innerHTML = "user exists (incorrect password)"
+										pass.current.value = ""
+										confirm.current.value = ""
+									}
+									else {
+										document.getElementById("console").innerHTML = ""
+									}
+								})
+					}}>
 
 						<Link to="/register">
 							<legend><h2>register</h2></legend>
@@ -72,6 +82,7 @@ function Register () {
 								<h2 class="sub" style={{float: "left", opacity: "90%", fontSize: "10px"}}>login</h2>
 								</legend>
 						</Link>
+						<code id="console"></code>
 						<br />
 
 						<input ref={user} type="username" id="username" placeholder="registrant" required />

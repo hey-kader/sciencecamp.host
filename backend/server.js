@@ -49,7 +49,20 @@ app.post('/login/auth', (req, res) => {
   mongoose.connect(process.env.uri)
 	var db = mongoose.connection
 
-	console.log(db.campers.find())
+db.collection("campers").findOne({username: req.body.username}, function (err, result) {
+	if (err) {
+		throw err
+	}
+	if (result) {
+		console.log(result)
+		console.log('password: ' + result.password)
+		console.log('posted: ' + req.body.password)
+	}
+	else {
+		console.log("user does not exist.")
+
+	}
+})
 	//console.log(req.body)
 
 /*  we should be querying a mongoose mongodb table here, to see 
@@ -73,14 +86,28 @@ app.post ('/register/auth', (req, res) => {
 			created: req.body.created,
 			latest: req.body.latest
 		})
+		var exists = null 
+		db.collection("campers").findOne({username: camper.username}, function (err, result) {
 
-		camper.save (function (err, camper) {
-			console.log('has been created')
+			if (err) {
+				throw err;
+			}
+
+			if (result) {
+				console.log("user exists!")
+				res.send(JSON.stringify({exists: true}))
+			}
+
+			else {
+				console.log("new user.")
+				camper.save (function (err, camper) {
+					console.log(camper.username+' has been created')
+				})
+			}
+
 		})
 	}
-
 })
-
 
 app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
