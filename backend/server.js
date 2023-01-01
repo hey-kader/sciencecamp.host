@@ -1,7 +1,9 @@
 require ("dotenv").config()
 const mongoose = require ("mongoose")
 const db = require ("./model/db")
+const Camper = require ('./model/camper')
 mongoose.set({strictQuery: true})
+
 const  path = require ( "path" )
 
 const ip = process.env.ip
@@ -45,18 +47,38 @@ app.get('/login', (req, res) => {
 app.post('/login/auth', (req, res) => {
 	
   mongoose.connect(process.env.uri)
-	console.log('db')
-	console.log(require ('./model/camper'))
-	const Camper = require ('./model/camper')
-	const camper = new Camper ({username: req.body.username, password: req.body.password, created: req.body.created, latest: req.body.latest})
-	console.log(camper)
+	var db = mongoose.connection
 
+	console.log(db.campers.find())
+	//console.log(req.body)
 
-	console.log(req.body)
-	/*  we should be querying a mongoose mongodb table here, to see if the credentials exist, and to respond to the fetch accordingly */
+/*  we should be querying a mongoose mongodb table here, to see 
+*  if the credentials exist, and to respond to the fetch accordingly */
 	if (req.body) {
 		res.send (JSON.stringify(req.body))
 	}
+
+})
+
+app.post ('/register/auth', (req, res) => {
+	if (req.body) {
+
+		console.log(req.body)
+		mongoose.connect(process.env.uri)	
+		var db = mongoose.connection
+
+		const camper = new Camper ({
+			username: req.body.username, 
+			password: req.body.password, 
+			created: req.body.created,
+			latest: req.body.latest
+		})
+
+		camper.save (function (err, camper) {
+			console.log('has been created')
+		})
+	}
+
 })
 
 

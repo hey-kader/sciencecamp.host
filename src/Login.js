@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 import './css/Login.css'
 
 function Login () {
+
 	const pass = useRef();
 	const user = useRef();
 
@@ -47,10 +48,11 @@ function Login () {
 							headers: {'Content-Type': 'application/json'},
 							body: JSON.stringify({username: String(user.current.value), password: String(bcrypt.hashSync(user.current.value+pass.current.value)), created: Date(), latest: Date()})
 						}
-						fetch('http://192.168.1.15:3000/login/auth/', opts)
+						fetch('http://192.168.1.30:3000/login/auth/', opts)
 							.then(response => response.json())
 							.then(data => console.log(data))
 						// make a post request
+						document.getElementById("hash").innerHTML = document.URL
 
 					}
 				}>
@@ -66,9 +68,7 @@ function Login () {
 				<input ref={pass} type="password" />
 					<br />
 					<br />
-					<br />
 					<input type="submit" value="submit" id="submit"/>
-					
 					
 				</form>
 
