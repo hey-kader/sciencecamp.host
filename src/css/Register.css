@@ -42,3 +42,7 @@ input {
 legend {
 	margin: auto;
 }
+
+#submit {
+	background: #f2bf50;
+}

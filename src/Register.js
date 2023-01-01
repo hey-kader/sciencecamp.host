@@ -12,6 +12,7 @@ function Register () {
 	const pass = useRef()
 	const confirm = useRef()
 
+
 		const style = {
 			margin: "1rem",
 			display: "inlineBlock",
@@ -24,10 +25,23 @@ function Register () {
 		function validate () {
 			var p1 = confirm.current.value
 			var p2 = pass.current.value
-			if (p1 == p2) {
+			if (p1 == p2 && p1 != "") {
 				document.getElementById('password').style.color = "green"
 				document.getElementById('confirm').style.color = "green"
+				console.log('color: green')
+				document.getElementById("submit").disabled = false
+				document.getElementById("submit").style.background = "lime"
+
 			}
+			else {
+				document.getElementById('password').style.color = "red"
+				document.getElementById('confirm').style.color = "red"
+				console.log('color: red')
+				document.getElementById("submit").disabled = true
+				document.getElementById("submit").style.background = "#f2bf50"
+
+			}
+
 		}
 
 		return (
@@ -50,30 +64,32 @@ function Register () {
 								.then(data => console.log(data))
 						}}>
 
-							<Link to="/register">
-								<legend><h2>register</h2></legend>
-							</Link>
-							<Link to="/login">
-								<legend>
-									<h2 class="sub" style={{float: "left", opacity: "90%", fontSize: "10px"}}>login</h2>
-									</legend>
-							</Link>
-							<br />
+						<Link to="/register">
+							<legend><h2>register</h2></legend>
+						</Link>
+						<Link to="/login">
+							<legend>
+								<h2 class="sub" style={{float: "left", opacity: "90%", fontSize: "10px"}}>login</h2>
+								</legend>
+						</Link>
+						<br />
 
-							<input ref={user} type="username" id="username" placeholder="registrant" required />
-							<br />
-							<input ref={pass} type="password" id="password"   placeholder="password" required />
-							<br />
-							<input ref={confirm} id="confirm" type="password" placeholder="confirm" required />
+						<input ref={user} type="username" id="username" placeholder="registrant" required />
+						<br />
+						<input ref={pass} type="password" id="password"   placeholder="password" required />
+						<br />
+						<input ref={confirm} id="confirm" type="password" placeholder="confirm" required />
 
-							<br />
-							<br />
+						<br />
+						<br />
 
-							<input id="submit" type="submit" />
+						<input id="submit" type="submit" disabled />
 
-							<br />
-						</form>
-					</div>
+						<br />
+
+					</form>
+						<p id="valid"></p>
+				</div>
 		)
 }
 
