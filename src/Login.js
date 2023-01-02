@@ -66,16 +66,16 @@ function Login () {
 				<Link to="/register">
 					<legend className="register-legend"><h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>register</h2></legend>
 				</Link>
-				<Link id="reset" to="/login/reset">
-					<legend  className="reset"><h5 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>forgot my password</h5></legend>
-				</Link>
-
 				<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
 				<br />
 				<input ref={pass} type="password" />
 					<br />
 					<br />
 					<input type="submit" value="submit" id="submit"/>
+				<Link id="reset" to="/login/reset">
+					<legend  className="reset"><h5 style={{ float: "left", fontSize: "50%",border: "none",color: 'lightgrey', background: 'red', opacity: '95%'}}>forgot my password</h5></legend>
+				</Link>
+
 					
 				</form>
 
