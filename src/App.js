@@ -7,6 +7,7 @@ import Menu from './Menu'
 import Login from './Login'
 import Register from './Register'
 import Reset from './Reset'
+import Thanks from './Thanks'
 import React, {useEffect, useState} from 'react'
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
 
@@ -130,6 +131,7 @@ function App() {
 						<Route path="login" element={<Login/>} />
 						<Route path="/login/reset" element={<Reset />} />
 						<Route path="register" element={<Register/>} />
+						<Route path="thanks" element={<Thanks />}/>
           </Routes>
         </BrowserRouter>
       </div>
