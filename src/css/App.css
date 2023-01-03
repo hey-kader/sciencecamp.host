@@ -2,18 +2,25 @@
 	text-decoration: none;
 	margin: 0;
 	display: inline|block;
+	background: lightblue;
+	color: #443444;
+	opacity: 78%;
 
 }
+
 html {
   margin: auto;
-	padding: 20px;
+	background-image: url('http://localhost:3000/bg2-export.png');
+	background-size: 100%;
+	opacity: 90%;
+	
 }
-
 #balance, #wallet {
 	display: inline|flex;
 	background: gray;
 	float: right;
 }
+
 #wallet {
 	color: orange;
 	float: right;
@@ -21,37 +28,16 @@ html {
 	float: right;
 	margin: 0rem 0rem 0rem 0rem;
 }
+
 #wallet code:hover {
 	color: tomato;
 }
 
-
-img{
-
-	display: inline-block;
-	margin: 0rem 0.5rem 0rem 0rem;
-	padding: 0.25rem 0.5rem 0rem 0rem;
-	justify-content: left;
-	text-align: left;
-}
-
 div {
-
 	text-align: left;
-	justify-content: left;
+	justify-content: center;
 }
 
-.App-header {
-  color: #000000;
-  flex-direction: column;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 p {
   color: #000000;
 }
@@ -65,11 +51,12 @@ p {
 	margin: 0;
 	display: inline|grid;
 }
-
 form {
 	margin: 20px;
 }
 
 h1 {
-	color: red;
+	margin: auto;
+	padding: 15px;
+	color: #443444;
 }
