@@ -2,10 +2,6 @@
 	text-decoration: none;
 	margin: 0;
 	display: inline|block;
-	background: lightblue;
-	color: #443444;
-	opacity: 78%;
-
 }
 
 html {
@@ -15,6 +11,7 @@ html {
 	opacity: 90%;
 	
 }
+
 #balance, #wallet {
 	display: inline|flex;
 	background: gray;
@@ -35,7 +32,7 @@ html {
 
 div {
 	text-align: left;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 p {
@@ -55,8 +52,8 @@ form {
 	margin: 20px;
 }
 
-h1 {
+h1, legend,  {
+	background: inherit;
 	margin: auto;
 	padding: 15px;
-	color: #443444;
 }

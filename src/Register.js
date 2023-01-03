@@ -17,9 +17,6 @@ function Register () {
 			margin: "4rem",
 			display: "inlineBlock",
 			padding: "0.8rem 0.8rem 0 0.8rem",
-		
-			background: "red",
-			opacity: "40%"
 
 		}
 		function validate () {
@@ -45,7 +42,7 @@ function Register () {
 		}
 
 		return (
-				<div>
+				<div id="register" >
 					<form onChange={() => validate()} style={style} action="post" onSubmit={(e) => {
 
 							e.preventDefault()
@@ -91,7 +88,6 @@ function Register () {
 						<br />
 						<input ref={confirm} id="confirm" type="password" placeholder="confirm" required />
 
-						<br />
 						<br />
 
 						<input id="submit" type="submit" disabled />

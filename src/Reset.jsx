@@ -11,9 +11,12 @@ function Reset () {
 
 			<form action="post" onSubmit={() => console.log('submitted')}>
 				<input style={{padding: "3px", margin: "10px 8px"}} type="submit" value=" x " onClick={() => navigate('/login')} />
+				<br />
 				<legend>reset password</legend>
 				<input type="password" placeholder="password reset" />
+				<br />
 				<input type="password" placeholder="confirm" />
+				<br />
 
 				<input type="submit" onClick={() => navigate('/thanks')}/>
 
