@@ -110,15 +110,15 @@ function App() {
 					<br />
 
           <Link to="/menu">
-            <h6><img src="../favicon.ico"/> menu </h6>
+						<h6><img src="../isometric-outline.png"/> menu </h6>
 					</Link>
 					<br />
 					<Link to="/login">
-					<h6> <img src="../favicon.ico"/> login </h6>
+					<h6> <img src="../isometric-outline.png"/> login </h6>
 					</Link>
 					<br />
 					<Link to="/register">
-						<h6><img src="../favicon.ico" alt="register bottle" /> register </h6>
+						<h6><img src="../isometric-outline.png" alt="register bottle" /> register </h6>
 					</Link>
 					<div id="connection-status">
 					</div>

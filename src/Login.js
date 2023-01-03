@@ -17,14 +17,13 @@ function Login () {
 
 
 	const style = {
-		margin: "auto",
+		margin: "4rem",
 		display: "inlineBlock",
 		padding: "0.8rem 0.8rem 0 0.8rem",
 	
 		background: "red",
 		opacity: "40%"
 	}
-
 
 		return (
 			<div>

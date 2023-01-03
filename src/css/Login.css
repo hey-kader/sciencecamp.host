@@ -1,10 +1,7 @@
 div {
 	display: block;
 }
-#login {
-	margin: 2rem;
-	float: left;
-}
+
 
 input {
 	padding: 10px;
@@ -14,12 +11,14 @@ input {
 }
 
 h2 {
-	color: tomato;
-	opacity: 50%;
+	color: white;
+	opacity: 80%;
 	padding: 10px;
 }
+
 h3 {
 }
+
 input:focus, h3:focus {
 	background: white;
 }

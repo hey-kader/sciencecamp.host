@@ -5,12 +5,32 @@ import {useNavigate} from 'react-router-dom'
 function That () {	
 	let navigate = useNavigate();
 	return (
+
 		<div id="that">
+			<br />
 			<aside>
-				<button onClick={() => {navigate('/menu')}}>X</button>
+				<button onClick={() => {navigate('/menu')}}> ['x'] </button>
 			</aside>
+			<br />
 			<div id="img">
-				<h3>that</h3>
+
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
+				<h3>filler text filler text filler text</h3>
 			</div>
 			<hr />
 

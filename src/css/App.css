@@ -1,12 +1,12 @@
 * {
 	text-decoration: none;
-	color: black;
 	margin: 0;
 	display: inline|block;
 
 }
 html {
-  margin: 0rem auto;
+  margin: auto;
+	padding: 20px;
 }
 
 #balance, #wallet {
@@ -56,6 +56,20 @@ p {
   color: #000000;
 }
 
-img, h6 {
-	color: lightgray;
+ h6 {
+	color: #aaaaaa;
+	font-size: 120%;
+	width: 120%;
+	height: 8px;
+	padding: 0;
+	margin: 0;
+	display: inline|grid;
+}
+
+form {
+	margin: 20px;
+}
+
+h1 {
+	color: red;
 }

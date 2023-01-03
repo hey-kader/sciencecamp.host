@@ -60,7 +60,7 @@ db.collection("campers").findOne({username: req.body.username}, function (err, r
 	}
 	else {
 		console.log("user does not exist.")
-
+		res.send("user does not exist"))
 	}
 })
 	//console.log(req.body)
@@ -68,9 +68,8 @@ db.collection("campers").findOne({username: req.body.username}, function (err, r
 /*  we should be querying a mongoose mongodb table here, to see 
 *  if the credentials exist, and to respond to the fetch accordingly */
 	if (req.body) {
-		res.send (JSON.stringify(req.body))
+		 res.send (JSON.stringify(req.body))  
 	}
-
 })
 
 app.post ('/register/auth', (req, res) => {

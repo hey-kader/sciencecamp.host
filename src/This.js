@@ -7,6 +7,7 @@ function This () {
 	return (
 
 		<div id="this">
+			<button onClick={() => navigate('/menu')}>[x]</button>
 			<div>
 				<Form />
 			</div>

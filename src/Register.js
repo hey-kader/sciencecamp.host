@@ -14,7 +14,7 @@ function Register () {
 
 
 		const style = {
-			margin: "1rem",
+			margin: "4rem",
 			display: "inlineBlock",
 			padding: "0.8rem 0.8rem 0 0.8rem",
 		

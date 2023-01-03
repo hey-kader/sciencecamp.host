@@ -1,6 +1,7 @@
 div div div form{
 	display: block;
-	width: 200px;
+	
+	idth: 200px;
 	float: left;
 }
 div {
