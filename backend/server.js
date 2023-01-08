@@ -1,4 +1,5 @@
 require ("dotenv").config()
+const bcrypt = require ("bcrypt")
 const mongoose = require ("mongoose")
 const db = require ("./model/db")
 const Camper = require ('./model/camper')
@@ -49,27 +50,37 @@ app.post('/login/auth', (req, res) => {
   mongoose.connect(process.env.uri)
 	var db = mongoose.connection
 
-db.collection("campers").findOne({username: req.body.username}, function (err, result) {
-	if (err) {
-		throw err
-	}
-	if (result) {
-		console.log(result)
-		console.log('password: ' + result.password)
-		console.log('posted: ' + req.body.password)
-	}
-	else {
-		console.log("user does not exist.")
-		res.send("user does not exist"))
-	}
-})
+	db.collection("campers").findOne({username: req.body.username}, function (err, result) {
+
+		if (err) {
+			throw err
+		}
+
+		if (result) {
+
+			console.log(result.username+':\t(login attempt)')
+
+			// seperate the salt from the digest, and rehash the password
+			
+			//bcrypt.compare(result.password, req.body.password).then(e => console.log(result.username + ':\t' + e))
+			res.send({name: result.username, passhash: result.password})
+
+		}
+		else {
+			console.log("user does not exist.")
+			res.send({errmesg: "user does not exist"})
+		}
+	})
 	//console.log(req.body)
 
 /*  we should be querying a mongoose mongodb table here, to see 
 *  if the credentials exist, and to respond to the fetch accordingly */
+
+/*
 	if (req.body) {
 		 res.send (JSON.stringify(req.body))  
 	}
+*/
 })
 
 app.post ('/register/auth', (req, res) => {

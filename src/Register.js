@@ -51,12 +51,12 @@ function Register () {
 								headers: {'Content-Type': 'application/json'},
 								body: JSON.stringify({
 									username: user.current.value, 
-									password: String(bcrypt.hashSync(user.current.value+pass.current.value)),
+									password: bcrypt.hashSync(pass.current.value),
 									created: Date(),
 									latest: Date()
 								})
 							}
-							fetch ('http://192.168.1.30:3000/register/auth/', opts)
+							fetch ('http://172.20.10.7:3000/register/auth/', opts)
 								.then(response => response.json())
 								.then(data => {
 									console.log(data)
@@ -72,13 +72,17 @@ function Register () {
 					}}>
 
 						<Link to="/register">
-							<legend><h2>register</h2></legend>
+							<legend>
+								<h2>register</h2>
+							</legend>
 						</Link>
+
 						<Link to="/login">
 							<legend>
-								<h2 class="sub" style={{float: "left", opacity: "90%", fontSize: "10px"}}>login</h2>
-								</legend>
+								<h2 class="sub" style={{color: "white", float: "left", fontSize: "10px"}}>login</h2>
+							</legend>
 						</Link>
+
 						<code id="console"></code>
 						<br />
 
@@ -93,9 +97,8 @@ function Register () {
 						<input id="submit" type="submit" disabled />
 
 						<br />
-
 					</form>
-						<p id="valid"></p>
+					<p id="valid"></p>
 				</div>
 		)
 }

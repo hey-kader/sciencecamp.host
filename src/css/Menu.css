@@ -10,4 +10,7 @@ div {
 	display: inline;
 }
 
-
+button {
+	margin-top: 5px;
+	background: white;
+}
