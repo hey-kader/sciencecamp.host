@@ -2,27 +2,35 @@ import {useState, useRef} from "react"
 import "./css/Register.css"
 import bcrypt from "bcryptjs" 
 import Login from "./Login"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 function Register () {
 
 	const [toggle, setToggle] = useState()
 
+	let navigation = useNavigate()
+
 	const user = useRef()
 	const pass = useRef()
+
 	const confirm = useRef()
 
 
 		const style = {
+
 			margin: "4rem",
 			display: "inlineBlock",
 			padding: "0.8rem 0.8rem 0 0.8rem",
 
 		}
+
 		function validate () {
+
 			var p1 = confirm.current.value
 			var p2 = pass.current.value
+
 			if (p1 == p2 && p1 != "") {
+
 				document.getElementById('password').style.color = "green"
 				document.getElementById('confirm').style.color = "green"
 				console.log('color: green')
@@ -31,6 +39,7 @@ function Register () {
 
 			}
 			else {
+
 				document.getElementById('password').style.color = "red"
 				document.getElementById('confirm').style.color = "red"
 				console.log('color: red')
@@ -61,12 +70,17 @@ function Register () {
 								.then(data => {
 									console.log(data)
 									if (data.exists == true) {
+
 										document.getElementById("console").innerHTML = "user exists (incorrect password)"
+
 										pass.current.value = ""
 										confirm.current.value = ""
+
 									}
-									else {
-										document.getElementById("console").innerHTML = ""
+									else if (data){
+
+										// document.getElementById("console").innerHTML = data 
+										navigation('/login')
 									}
 								})
 					}}>
@@ -83,8 +97,7 @@ function Register () {
 							</legend>
 						</Link>
 
-						<code id="console"></code>
-						<br />
+
 
 						<input ref={user} type="username" id="username" placeholder="registrant" required />
 						<br />
@@ -98,6 +111,9 @@ function Register () {
 
 						<br />
 					</form>
+					<br />
+					<code id="console"></code>
+					<br />
 					<p id="valid"></p>
 				</div>
 		)

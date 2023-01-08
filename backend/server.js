@@ -112,12 +112,15 @@ app.post ('/register/auth', (req, res) => {
 				console.log("new user.")
 				camper.save (function (err, camper) {
 					console.log(camper.username+' has been created')
+					res.send({msg: camper.username+' has been created'})
 				})
 			}
 
 		})
 	}
 })
+
+
 
 app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))

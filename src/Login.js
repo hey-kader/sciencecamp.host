@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react'
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import bcrypt from 'bcryptjs'
 import './css/Login.css'
 
@@ -7,6 +7,7 @@ function Login () {
 
 	const pass = useRef();
 	const user = useRef();
+	let navigation = useNavigate()
 
 	const [username, setUsername] = useState("");
 
@@ -41,15 +42,14 @@ function Login () {
 							.then(response => response.json())
 							.then(data => {
 								console.log(data)
-								if (data.passhash) {
-									console.log(data.passhash)
-									console.log(bcrypt.compareSync(pass.current.value, data.passhash))
-									document.getElementById('hash').innerHTML =	'passhash: '+data.passhash
+								const login = bcrypt.compareSync(pass.current.value, data.passhash)
+
+								if (login == true) {
+									navigation('/dash')
 								}
 								else if (data.errmesg){
 									document.getElementById('hash').innerHTML = data.errmesg
 								}
-								// else navigate ('/dash')
 							})
 						// make a post request
 
