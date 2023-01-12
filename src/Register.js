@@ -55,6 +55,7 @@ function Register () {
 					<form onChange={() => validate()} style={style} action="post" onSubmit={(e) => {
 
 							e.preventDefault()
+							localStorage.setItem("username", user.current.value)
 							const opts = {
 								method: "POST",
 								headers: {'Content-Type': 'application/json'},
@@ -65,7 +66,7 @@ function Register () {
 									latest: Date()
 								})
 							}
-							fetch ('http://172.20.10.7:3000/register/auth/', opts)
+							fetch ('http://172.20.10.8:3000/register/auth/', opts)
 								.then(response => response.json())
 								.then(data => {
 									console.log(data)
@@ -80,7 +81,11 @@ function Register () {
 									else if (data){
 
 										// document.getElementById("console").innerHTML = data 
+										
+										document.cookie = JSON.stringify({password: data.passhash})
 										navigation('/login')
+
+
 									}
 								})
 					}}>

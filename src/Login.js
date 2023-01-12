@@ -26,25 +26,36 @@ function Login () {
 			<div>
 			<div id="login">
 
-				<form style={style} onSubmit={
+					<p>hi</p>
+					<form style={style} onSubmit={
 					(event) => {
 						event.preventDefault()
-						
 						document.getElementById("submit").style.backgroundColor = "orange" 
 						document.getElementById("username").style.borderStyle = "groove"
 
 						const opts = {
 							method: "POST",
 							headers: {'Content-Type': 'application/json'},
-							body: JSON.stringify({username: user.current.value, password: bcrypt.hashSync(pass.current.value), created: Date(), latest: Date()})
+
+							body: JSON.stringify({
+								username: user.current.value, 
+								password: bcrypt.hashSync(pass.current.value),
+								created: Date(), latest: Date()
+							})
 						}
-						fetch('http://172.20.10.7:3000/login/auth/', opts)
+
+						fetch('http://172.20.10.8:3000/login/auth/', opts)
 							.then(response => response.json())
 							.then(data => {
 								console.log(data)
 								const login = bcrypt.compareSync(pass.current.value, data.passhash)
-
 								if (login == true) {
+
+									// set cookie here
+									console.log(user.current.value)
+									localStorage.setItem("username", user.current.value)
+									localStorage.setItem("password", pass.current.value)
+
 									navigation('/dash')
 								}
 								else if (data.errmesg){
@@ -52,10 +63,8 @@ function Login () {
 								}
 							})
 						// make a post request
-
 					}
 				}>
-
 				<Link to="/login">
 					<legend className="login-legend">
 						<h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>
@@ -63,7 +72,6 @@ function Login () {
 						</h2>
 					</legend>
 				</Link>
-
 				<Link to="/register">
 					<legend className="register-legend">
 						<h2 style={{color: 'lightgrey', background: 'red', opacity: '95%'}}>
@@ -71,18 +79,12 @@ function Login () {
 						</h2>
 					</legend>
 				</Link>
-
 				<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
-
 				<br />
-
 				<input ref={pass} type="password" />
-
 				<br />
 				<br />
-
 				<input type="submit" value="submit" id="submit"/>
-
 				<Link id="reset" to="/login/reset">
 					<legend>
 						<h5 style={{ float: "left", fontSize: "50%",border: "none",color: 'lightgrey', background: 'red', opacity: '95%'}}>

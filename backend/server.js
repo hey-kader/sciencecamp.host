@@ -15,14 +15,14 @@ const bodyparser = require ( "body-parser" )
 
 var app = express()
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'build')))
 
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
 
 
 app.get('/', (req, res) => {
-	res.send()
+  res.sendFile(path.join('public', 'index.html'))
 })
 
 app.get('/menu', (req, res) => {
@@ -42,6 +42,10 @@ app.get('/menu/that', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
+app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
@@ -70,6 +74,7 @@ app.post('/login/auth', (req, res) => {
 			console.log("user does not exist.")
 			res.send({errmesg: "user does not exist"})
 		}
+
 	})
 	//console.log(req.body)
 
@@ -96,6 +101,7 @@ app.post ('/register/auth', (req, res) => {
 			created: req.body.created,
 			latest: req.body.latest
 		})
+
 		var exists = null 
 		db.collection("campers").findOne({username: camper.username}, function (err, result) {
 
@@ -118,20 +124,6 @@ app.post ('/register/auth', (req, res) => {
 
 		})
 	}
-})
-
-
-
-app.get('/api', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
-
-app.post('/api', (req, res) => {
-		res.send({
-			address: req.body
-		})
-	console.log(req.body)
-
 })
 
 app.listen (port, ip,  () => {
