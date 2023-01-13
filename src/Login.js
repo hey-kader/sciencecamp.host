@@ -10,6 +10,11 @@ function Login () {
 	let navigation = useNavigate()
 
 	const [username, setUsername] = useState("");
+	useEffect (() => {
+		if (localStorage.getItem("username")) {
+			document.getElementById("username").innerHTML = localStorage.getItem("username")
+		}
+	}, [])
 
 	const [salt, setSalt] = useState("");
 	const [hash, setHash] = useState("");
@@ -54,7 +59,7 @@ function Login () {
 									// set cookie here
 									console.log(user.current.value)
 									localStorage.setItem("username", user.current.value)
-									localStorage.setItem("password", pass.current.value)
+									localStorage.setItem("password", data.passhash)
 
 									navigation('/dash')
 								}

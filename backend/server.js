@@ -3,6 +3,7 @@ const bcrypt = require ("bcrypt")
 const mongoose = require ("mongoose")
 const db = require ("./model/db")
 const Camper = require ('./model/camper')
+
 mongoose.set({strictQuery: true})
 
 const  path = require ( "path" )
@@ -19,6 +20,9 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
+
+const cookieparser = require ("cookie-parser")
+//app.use(cookieparser)
 
 
 app.get('/', (req, res) => {
@@ -86,6 +90,10 @@ app.post('/login/auth', (req, res) => {
 		 res.send (JSON.stringify(req.body))  
 	}
 */
+})
+
+app.get ('/dash', (req, res) => {
+	res.redirect('/login')
 })
 
 app.post ('/register/auth', (req, res) => {
