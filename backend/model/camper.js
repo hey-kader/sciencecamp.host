@@ -12,9 +12,13 @@ const camperSchema = new Schema ({
 	},
 	created: {
 		type: Date,
+		required: true
 	},
 	latest: {
 		type: Date,
+	},
+	visits: {
+		type: Number,
 	},
 })
 

@@ -15,18 +15,25 @@ function Dash () {
 			msg: 'requesting a list of all users from /dash via post req'
 		}),
 	}
-	fetch('http://172.20.10.8:3000/dash', opts)
+fetch('http://172.20.10.8:3000/dash', opts)
 		.then((response) => response.json())
 		.then((data) => {
-			setUsers(users, data)
-			console.log(users)
+			setUsers(users, data.users)
+			console.log(data.users)
+
+			let online = new Array ()
+			data.users.forEach((item) => {
+				console.log(item.username)
+				online.push(item.username)
+			})
+			console.log(online)
+			document.getElementById("users").innerHTML = online
 
 		})
-	})
-
+	}, [])
 	useEffect (()=> {
-		console.log(localStorage.username)	
-		setName(name, localStorage.username)
+		console.log(window.localStorage.getItem("username"))	
+		setName(name, window.localStorage.getItem("username"))
 	}, [])
 
 	return (
@@ -36,11 +43,12 @@ function Dash () {
 			<div id="dashboard">
 				<button onClick={() => {
 					localStorage.setItem("password", "")
-					navigation('/')
+					navigation('/login')
 				}}>
 					logout
 				</button>
 				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
+				<h3 id="users"></h3>
 			</div>
 		</>
 	)

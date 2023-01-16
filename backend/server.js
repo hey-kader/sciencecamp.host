@@ -1,8 +1,7 @@
 require ("dotenv").config()
-
 const bcrypt = require ("bcrypt")
 const mongoose = require ("mongoose")
-const db = require ("./model/db")
+//const db = require ("./model/db")
 const Camper = require ('./model/camper')
 
 mongoose.set({strictQuery: false})
@@ -24,7 +23,6 @@ app.use(bodyparser.json())
 
 const cookieparser = require ("cookie-parser")
 //app.use(cookieparser)
-
 
 app.get('/', (req, res) => {
   res.sendFile(path.join('public', 'index.html'))
@@ -58,6 +56,13 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+app.get ('/dash', (req, res) => {
+	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+//res.redirect('/login')
+	
+})
+
 app.post('/login/auth', (req, res) => {
 	
   mongoose.connect(process.env.uri)
@@ -75,7 +80,6 @@ app.post('/login/auth', (req, res) => {
 
 			// seperate the salt from the digest, and rehash the password
 			
-			//bcrypt.compare(result.password, req.body.password).then(e => console.log(result.username + ':\t' + e))
 			res.send({name: result.username, passhash: result.password})
 
 		}
@@ -97,21 +101,16 @@ app.post('/login/auth', (req, res) => {
 */
 })
 
-app.get ('/dash', (req, res) => {
-	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
-	res.redirect('/login')
-	
-})
+
+
 
 app.post ('/dash', (req, res) => {
-	const names = [] 
-	Camper.find({}).then((data)=> {
-		data.forEach((item) => {
-			names.push(item.username)
-		})
-		res.status(200).send(names)
-		
-	})
+	let names = new Array()
+	Camper.find({})
+		.then((data)=> {
+					res.status(200).send({users: data})
+			})
+
 })
 
 /*
@@ -141,7 +140,8 @@ app.post ('/register/auth', (req, res) => {
 			username: req.body.username, 
 			password: req.body.password, 
 			created: req.body.created,
-			latest: req.body.latest
+			latest: req.body.latest,
+			visits: 0
 		})
 
 		var exists = null 
