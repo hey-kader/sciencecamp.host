@@ -1,12 +1,13 @@
 require ("dotenv").config()
+
 const bcrypt = require ("bcrypt")
 const mongoose = require ("mongoose")
 const db = require ("./model/db")
 const Camper = require ('./model/camper')
 
-mongoose.set({strictQuery: true})
+mongoose.set({strictQuery: false})
 
-const  path = require ( "path" )
+const path = require ("path")
 
 const ip = process.env.ip
 const port = process.env.port

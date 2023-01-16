@@ -5,7 +5,6 @@ import Form from './Form'
 function This () {	
 	let navigate = useNavigate()
 	return (
-
 		<div id="this">
 			<button onClick={() => navigate('/menu')}>[x]</button>
 			<div>
