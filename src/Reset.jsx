@@ -1,10 +1,16 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom"
+
 import "./css/Reset.css"
 
 function Reset () {
 
 	var navigate = useNavigate()
+
+	const [username, setUsername] = useState()
+	useEffect(()=> {
+		setUsername(username, window.localStorage.getItem("username"))
+	})
 
 	const style = {
 		margin: "4rem"
@@ -37,7 +43,7 @@ function Reset () {
 				<legend>reset password</legend>
 				<br />
 
-				<input id="username" type="username" placeholder="username" />
+				<input value={window.localStorage.getItem("username")}id="username" type="username" />
 				<br />
 
 				<input type="submit" id="submit" />
