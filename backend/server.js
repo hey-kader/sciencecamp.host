@@ -97,12 +97,33 @@ app.post('/login/auth', (req, res) => {
 })
 
 app.get ('/dash', (req, res) => {
+	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
 	res.redirect('/login')
+	
 })
 
 app.post ('/dash', (req, res) => {
+	const names = [] 
+	Camper.find({}).then((data)=> {
+		data.forEach((item) => {
+			names.push(item.username)
+		})
+		res.status(200).send(names)
+		
+	})
+})
+
+/*
+app.get ('/campers', (req, res) => {
+	const users = []
+	
+	Camper.find({}).then((data)=> res.status(200).send(data))
+})
+
+app.post ('/campers', (req, res) => {
 	Camper.find({}).then((data)=> res.send(data))
 })
+*/
 
 app.get('/thanks', (req, res) => {
 	res.redirect('/')

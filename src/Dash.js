@@ -1,11 +1,11 @@
 import {useNavigate} from "react-router-dom"
 import {useState, useEffect} from "react"
+import './css/Dash.css'
 
 function Dash () {
 
 	let navigation = useNavigate()
 	const [name, setName] = useState()
-
 	const [users, setUsers] = useState()
 	useEffect(() => {
 	const opts = {
@@ -30,23 +30,19 @@ function Dash () {
 	}, [])
 
 	return (
-		<div>
-			<code>
-				<p>logged in</p>
-				<h3>{name ? "" : name}</h3>
-				<h3>{users ? "" : users}</h3>
-			</code>
-
-			<button onClick={() => {
-				localStorage.setItem("password", "")
-				navigation('/')
-			}}>logout</button>
-			<div id="users">
-				<ol id="userArray">
-					<li className="user"></li>
-				</ol>
+		<>
+			<br />
+			<br />
+			<div id="dashboard">
+				<button onClick={() => {
+					localStorage.setItem("password", "")
+					navigation('/')
+				}}>
+					logout
+				</button>
+				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
 			</div>
-		</div>
+		</>
 	)
 }
 

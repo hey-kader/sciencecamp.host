@@ -33,7 +33,9 @@ function Reset () {
 				}
 				fetch("/login/reset", opts)
 					.then((response) => response.json())
-					.then((data) => console.log(data))
+					.then((data) => {
+						console.log(data)
+					})
 					console.log('submitted')
 					navigate('/thanks')
 				}
