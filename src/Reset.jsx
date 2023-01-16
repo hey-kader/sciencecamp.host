@@ -15,9 +15,22 @@ function Reset () {
 
 			<form style={style} action="post" onSubmit={(e) => {
 				e.preventDefault()
-				console.log('submitted')
-				navigate('/thanks')
-			}
+				// fetch (/login/reset)
+				const opts = {
+					method:"POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						"msg": "popingggg!"
+					})
+				}
+				fetch("/login/reset", opts)
+					.then((response) => response.json())
+					.then((data) => console.log(data))
+					console.log('submitted')
+					navigate('/thanks')
+				}
 			}>
 				<input style={{padding: "3px", margin: "10px 8px"}} type="submit" value=" x " onClick={() => navigate('/login')} />
 				<br />
@@ -27,7 +40,7 @@ function Reset () {
 				<input id="username" type="username" placeholder="username" />
 				<br />
 
-				<input type="submit" id="submit" disabled />
+				<input type="submit" id="submit" />
 				<br />
 				
 

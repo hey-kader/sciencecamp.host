@@ -10,6 +10,7 @@ import Reset from './Reset'
 import Thanks from './Thanks'
 import Dash from './Dash'
 import React, {useEffect, useState} from 'react'
+import cookie from "react-cookie"
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
 
 import { useWeb3React } from "@web3-react/core"

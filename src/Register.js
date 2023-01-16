@@ -2,19 +2,29 @@ import {useState, useRef} from "react"
 import "./css/Register.css"
 import bcrypt from "bcryptjs" 
 import Login from "./Login"
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate, useEffect} from "react-router-dom"
+import {useCookies} from "react-cookie" 
 
 function Register () {
 
 	const [toggle, setToggle] = useState()
 
 	let navigation = useNavigate()
+	const [cookies, setCookie] = useCookies(['user'])
+
+	function userCookie () {
+		setCookie('username', user.current.value, {path: '/register'})
+	}
+
+	function passwordCookie (ph) {
+		setCookie('password', ph, {path: '/register'})
+	}
+	
 
 	const user = useRef()
 	const pass = useRef()
 
 	const confirm = useRef()
-
 
 		const style = {
 
@@ -58,7 +68,10 @@ function Register () {
 							localStorage.setItem("username", user.current.value)
 							const opts = {
 								method: "POST",
-								headers: {'Content-Type': 'application/json'},
+								headers: {
+								'Content-Type': 'application/json'
+								},
+
 								body: JSON.stringify({
 									username: user.current.value, 
 									password: bcrypt.hashSync(pass.current.value),
@@ -70,6 +83,7 @@ function Register () {
 								.then(response => response.json())
 								.then(data => {
 									console.log(data)
+									setCookie("password", data.passhash, {path: '/'})
 									if (data.exists == true) {
 
 										document.getElementById("console").innerHTML = "user exists (incorrect password)"
@@ -82,7 +96,7 @@ function Register () {
 
 										// document.getElementById("console").innerHTML = data 
 										
-										document.cookie = JSON.stringify({password: data.passhash})
+
 										navigation('/login')
 
 
@@ -113,6 +127,7 @@ function Register () {
 						<br />
 
 						<input id="submit" type="submit" disabled />
+						<code>{document.cookie ? document.cookie.password : "no cookie"}</code>
 
 						<br />
 					</form>

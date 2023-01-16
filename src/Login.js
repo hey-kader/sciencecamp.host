@@ -7,6 +7,9 @@ function Login () {
 
 	const pass = useRef();
 	const user = useRef();
+	useEffect(() => {
+		user.current.value = localStorage.getItem("username")
+	})
 	let navigation = useNavigate()
 
 	const [username, setUsername] = useState("");
@@ -29,9 +32,8 @@ function Login () {
 
 		return (
 			<div>
-			<div id="login">
+				<div id="login">
 
-					<p>hi</p>
 					<form style={style} onSubmit={
 					(event) => {
 						event.preventDefault()
@@ -40,15 +42,16 @@ function Login () {
 
 						const opts = {
 							method: "POST",
-							headers: {'Content-Type': 'application/json'},
-
+							headers: {
+							'Content-Type': 'application/json'
+							},
 							body: JSON.stringify({
 								username: user.current.value, 
 								password: bcrypt.hashSync(pass.current.value),
-								created: Date(), latest: Date()
+								created: Date(), 
+								latest: Date()
 							})
 						}
-
 						fetch('http://172.20.10.8:3000/login/auth/', opts)
 							.then(response => response.json())
 							.then(data => {
@@ -102,7 +105,7 @@ function Login () {
 				</form>
 
 			</div>
-				<div id="hash"></div>
+			<div id="hash"></div>
 		</div>
 		);
 }

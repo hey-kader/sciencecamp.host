@@ -49,6 +49,10 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+app.get ('/login/reset', (req, res) => {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
@@ -96,6 +100,14 @@ app.get ('/dash', (req, res) => {
 	res.redirect('/login')
 })
 
+app.post ('/dash', (req, res) => {
+	Camper.find({}).then((data)=> res.send(data))
+})
+
+app.get('/thanks', (req, res) => {
+	res.redirect('/')
+})
+
 app.post ('/register/auth', (req, res) => {
 	if (req.body) {
 
@@ -132,6 +144,12 @@ app.post ('/register/auth', (req, res) => {
 
 		})
 	}
+})
+
+app.post('/login/reset',(req, res) => {
+	console.log ('posted to /login/reset!')	
+	console.log(res.body)
+	res.send({msg: 'successfully reset (test)'})
 })
 
 app.listen (port, ip,  () => {
