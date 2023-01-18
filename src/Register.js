@@ -79,7 +79,7 @@ function Register () {
 									latest: Date()
 								})
 							}
-							fetch ('http://172.20.10.8:3000/register/auth/', opts)
+							fetch ('http://172.20.20.20:3000/register/auth/', opts)
 								.then(response => response.json())
 								.then(data => {
 									console.log(data)

@@ -15,7 +15,7 @@ function Dash () {
 			msg: 'requesting a list of all users from /dash via post req'
 		}),
 	}
-fetch('http://172.20.10.8:3000/dash', opts)
+fetch('http://172.20.20.20:3000/dash', opts)
 		.then((response) => response.json())
 		.then((data) => {
 			setUsers(users, data.users)

@@ -31,7 +31,7 @@ function Reset () {
 						"msg": "popingggg!"
 					})
 				}
-				fetch("/login/reset", opts)
+				fetch("http://172.20.20.20:3000/login/reset", opts)
 					.then((response) => response.json())
 					.then((data) => {
 						console.log(data)

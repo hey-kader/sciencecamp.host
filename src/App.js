@@ -66,7 +66,7 @@ function App() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({address: account})
     }
-    fetch('http://192.168.1.30:3000/api', opts)
+    fetch('http://172.20.20.20:3000/api', opts)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message)
