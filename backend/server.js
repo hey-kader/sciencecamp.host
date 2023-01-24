@@ -5,6 +5,7 @@ const db = require ("./model/db")
 const Camper = require ('./model/camper')
 var fs = require ("fs")
 var morgan = require ("morgan")
+const https = require ("https")
 
 mongoose.set({strictQuery: false})
 
@@ -36,6 +37,8 @@ app.use(morgan('combined', {stream: accessLog}))
 const cookieParser = require ("cookie-parser")
 app.use(cookieParser())
 
+
+
 // req.session, req.session.cookie, req.session.store objects
 app.use(session({
 	genid: (req) => {
@@ -45,28 +48,40 @@ app.use(session({
 	saveUninitialized: true,
 	secret: "secret",
 	cookie: {
-		httpOnly: true,
-		domain: "172.20.20.20",
-		path: '/',
-		secure: false
+		httpOnly: false,
+		domain: "sciencecamp.host",
+		secure: true,
+		samesite: true
 	},
 	store: MongoStore.create({
 		client: mongoose.connection.getClient(),
 		dbName: 'sciencecamp',
 		collectionName: 'sessions',
 		stringify: false
+
 	}),
-	views: 0,
 }))
+
+const credentials = {
+	cert: fs.readFileSync("./ssl/server.crt"),
+	key: fs.readFileSync("./ssl/server.key")
+}
+
+const server = https.createServer(credentials, app)
+server.listen(443, ip)
+
+app.get ('/img', (req, res) => {
+	res.sendFile(path.join(__dirname,'clouds.png'))
+})
+
 
 app.get('/', (req, res) => {
 
-	if (req.session.views) {
-		req.session.views++
-	}
-	else {
-		req.session.views = 0
-	}
+	console.log('test')
+	console.warn('test')
+	console.log(req.session)
+	req.session.visits++
+	
 	console.log(req.session)
 	res.sendFile(path.join('public', 'index.html'))
 })
@@ -122,8 +137,8 @@ app.post('/login/auth', (req, res) => {
 	
   mongoose.connect(process.env.uri)
 	var db = mongoose.connection
-
-	db.collection("campers").findOneAndUpdate({username: req.body.username}, { $set: {"latest": new Date()}}, {$set: {"visits": visits+1}}, function (err, result) {
+	req.session.visits++
+	db.collection("campers").update({username: req.body.username}, { $set: {"latest": new Date()}}, {$inc: {"visits": 1}}, function (err, result) {
 
 		if (err) {
 			throw err
@@ -131,15 +146,28 @@ app.post('/login/auth', (req, res) => {
 
 		if (result) {
 
-			console.log(result)
-			console.log(result.username+':\t(login attempt)')
+			db.collection("campers").findOne({username: req.body.username}, function (err, _result) {
+				if (err) {
+					throw err;
+				}
+			else if (_result){
+				console.log(_result)
+				//
+				console.log(_result.username+':\t(visits: '+_result.visits+')')
+			}
+			else {
+				console.log ('does not exist')
+			}
+			console.log(req.body.username+':\t(login attempt)')
+			req.session.password = req.body.password
+			req.session.username = req.body.username 
 
-			
-			console.log(result._id)
-			req.session.cookie.username = result.username
-			req.session.cookie.password = result.password
+			req.session.save ((err) => console.log(err))
 
-			res.send({name: result.username, passhash: result.password})
+			res.send({username: _result.username, password: _result.password})
+		})
+
+
 
 
 		}
@@ -177,7 +205,7 @@ app.post ('/dash', (req, res) => {
 
 })
 
-/*
+
 app.get ('/campers', (req, res) => {
 	const users = []
 	
@@ -187,7 +215,7 @@ app.get ('/campers', (req, res) => {
 app.post ('/campers', (req, res) => {
 	Camper.find({}).then((data)=> res.send(data))
 })
-*/
+
 
 app.get('/thanks', (req, res) => {
 	res.redirect('/')
@@ -201,15 +229,21 @@ app.post ('/register/auth', (req, res) => {
 		var db = mongoose.connection
 
 		const camper = new Camper ({
+			id: req.session.id,
 			username: req.body.username, 
 			password: req.body.password, 
 			created: req.body.created,
 			latest: req.body.latest,
-			visits: 0
+			visits: {
+				ip: req.ip,
+				session: req.session,
+				login: Date(),
+				count: 1
+			} 
 		})
 
 		var exists = null 
-		db.collection("campers").findOne({username: camper.username}, function (err, result) {
+		db.collection("campers").findOne({username: req.body.username}, function (err, result) {
 
 			if (err) {
 				throw err;
@@ -217,15 +251,17 @@ app.post ('/register/auth', (req, res) => {
 
 			if (result) {
 				console.log("user exists!")
+				console.log(result)
 				res.send(JSON.stringify({exists: true}))
 			}
 
 			else {
+				// new user inherits the uuid: _id of that session
 				console.log("new user.")
-				camper.save (function (err, camper) {
-					console.log(camper.username+' has been created')
-					camper.id = req.session._id
-					res.send({msg: camper._id+' has been created'})
+					camper.save (function (err, camper) {
+					console.log('created:\t'+camper.username+' has been created')
+					console.log('session:\t'+req.session)
+					res.send({msg: camper.id+' has been created'})
 				})
 			}
 
@@ -233,6 +269,16 @@ app.post ('/register/auth', (req, res) => {
 	}
 })
 
+/* 
+let result = db.collection("campers").findOne({username: req.body.username})
+if (result) {
+	req.session.password = req.body.password
+}
+else {
+	
+}
+
+*/
 app.post('/login/reset',(req, res) => {
 	console.log ('posted to /login/reset!')	
 	console.log(res.body)
@@ -240,9 +286,17 @@ app.post('/login/reset',(req, res) => {
 })
 
 app.post('/api', (req, res) => {
+	req.session.ip = req.ip
+	console.log(res)
 	res.status(200).send({address: req.ip})
 })
 
+/*
 app.listen (port, ip,  () => {
 	console.log('http://'+ip+':'+port)
 })
+*/
+
+
+
+

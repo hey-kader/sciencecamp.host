@@ -10,7 +10,7 @@ function Register () {
 	const [toggle, setToggle] = useState()
 
 	let navigation = useNavigate()
-	const [cookies, setCookie] = useCookies(['user'])
+	const [cookies, setCookie] = useCookies(['username'])
 
 	function userCookie () {
 		setCookie('username', user.current.value, {path: '/register'})
@@ -27,11 +27,9 @@ function Register () {
 	const confirm = useRef()
 
 		const style = {
-
 			margin: "4rem",
 			display: "inlineBlock",
 			padding: "0.8rem 0.8rem 0 0.8rem",
-
 		}
 
 		function validate () {
@@ -79,11 +77,11 @@ function Register () {
 									latest: Date()
 								})
 							}
-							fetch ('http://172.20.20.20:3000/register/auth/', opts)
+							fetch ('https://sciencecamp.host/register/auth/', opts)
 								.then(response => response.json())
 								.then(data => {
-									console.log(data)
-									setCookie("password", data.passhash, {path: '/'})
+									console.log(data._id)
+									let sessioncookie = data._id + '; '+ "SameSite=None; Secure"
 									if (data.exists == true) {
 
 										document.getElementById("console").innerHTML = "user exists (incorrect password)"
@@ -127,7 +125,6 @@ function Register () {
 						<br />
 
 						<input id="submit" type="submit" disabled />
-						<code>{document.cookie ? document.cookie.password : "no cookie"}</code>
 
 						<br />
 					</form>

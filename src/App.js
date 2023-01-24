@@ -66,7 +66,7 @@ function App() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({address: account})
     }
-    fetch('http://172.20.20.20:3000/api', opts)
+fetch('https://sciencecamp.host/api', opts)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message)

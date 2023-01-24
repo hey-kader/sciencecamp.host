@@ -1,23 +1,36 @@
 import React, {useRef, useState, useEffect} from 'react'
+import {useCookies} from "react-cookie"
 import {Link, useNavigate} from "react-router-dom"
 import bcrypt from 'bcryptjs'
 import './css/Login.css'
 
 function Login () {
 
+	const [cookies, setCookie] = useCookies(['username'], ['password'], ['connect.sid'], ['id'])
+		useEffect (()=> {
+			console.log('cookies!')
+			console.log(document.cookie)
+			console.log(cookies)
+	},[])
+
 	const pass = useRef();
 	const user = useRef();
+
 	useEffect(() => {
 		user.current.value = localStorage.getItem("username")
-	})
+	},[])
 	let navigation = useNavigate()
 
 	const [username, setUsername] = useState("");
 	useEffect (() => {
-		if (localStorage.getItem("username")) {
-			document.getElementById("username").innerHTML = localStorage.getItem("username")
-		}
-	}, [])
+			setUsername(username, user.current.value)
+	}, [user])
+
+	const [password, setPassword] = useState("");
+	useEffect (() => {
+		setPassword(password, pass.current.value)
+	}, [pass])
+
 
 	const [salt, setSalt] = useState("");
 	const [hash, setHash] = useState("");
@@ -48,22 +61,23 @@ function Login () {
 							body: JSON.stringify({
 								username: user.current.value, 
 								password: bcrypt.hashSync(pass.current.value),
-								created: Date(), 
 								latest: Date()
-							})
+							}),
 						}
-						fetch('http://172.20.20.20:3000/login/auth/', opts)
-							.then(response => response.json())
-							.then(data => {
+						fetch('https://sciencecamp.host/login/auth/', opts)
+							.then((response => response.json())
+							.then((data) => {
 								console.log(data)
-								const login = bcrypt.compareSync(pass.current.value, data.passhash)
+								const login = bcrypt.compareSync(pass.current.value, data.password)
+								console.log(login)
 								if (login == true) {
-
+									window.localStorage.setItem("password", data.password)
+									
 									// set cookie here
-									console.log(user.current.value)
-									localStorage.setItem("username", user.current.value)
-									localStorage.setItem("password", data.passhash)
+									document.cookie = data.password
 
+									console.log(user.current.value)
+									console.log(data)
 									navigation('/dash')
 								}
 								else if (data.errmesg){
@@ -71,7 +85,7 @@ function Login () {
 								}
 							})
 						// make a post request
-					}
+					)}
 				}>
 				<Link to="/login">
 					<legend className="login-legend">
@@ -89,13 +103,13 @@ function Login () {
 				</Link>
 				<input ref={user} onChange={() => setUsername(username, user.current.value)} type="username" id="username" />
 				<br />
-				<input ref={pass} type="password" />
+				<input ref={pass} onChange={()=> setPassword(password, pass.current.value)}type="password" />
 				<br />
 				<br />
 				<input type="submit" value="submit" id="submit"/>
 				<Link id="reset" to="/login/reset">
 					<legend>
-						<h5 style={{ float: "left", fontSize: "50%",border: "none",color: 'lightgrey', background: 'red', opacity: '95%'}}>
+						<h5 onClick={()=>console.log(document.cookie)} style={{ float: "left", fontSize: "50%",border: "none",color: 'lightgrey', background: 'red', opacity: '95%'}}>
 							forgot my password
 						</h5>
 					</legend>
