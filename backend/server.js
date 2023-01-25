@@ -30,7 +30,7 @@ app.use(bodyparser.json())
 
 
 // save logs
-const accessLog = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), {flags: 'a'})
+const accessLog = fs.createWriteStream(path.join(__dirname, 'logs/'+Date()), {flags: 'a'})
 app.use(morgan('combined', {stream: accessLog}))
 
 
@@ -63,8 +63,8 @@ app.use(session({
 }))
 
 const credentials = {
-	cert: fs.readFileSync("./ssl/server.crt"),
-	key: fs.readFileSync("./ssl/server.key")
+	cert: fs.readFileSync("./.ssl/cert.pem"),
+	key: fs.readFileSync("./.ssl/key.pem")
 }
 
 const server = https.createServer(credentials, app)
@@ -296,7 +296,4 @@ app.listen (port, ip,  () => {
 	console.log('http://'+ip+':'+port)
 })
 */
-
-
-
 
