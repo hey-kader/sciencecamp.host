@@ -17,10 +17,15 @@ function Login () {
 	const pass = useRef();
 	const user = useRef();
 
+	let navigation = useNavigate()
 	useEffect(() => {
 		user.current.value = localStorage.getItem("username")
+		if (window.localStorage.getItem("password")) {
+			setPassword(password, localStorage.getItem("password"))
+			navigation('/dash')
+		}
 	},[])
-	let navigation = useNavigate()
+
 
 	const [username, setUsername] = useState("");
 	useEffect (() => {
@@ -29,7 +34,8 @@ function Login () {
 
 	const [password, setPassword] = useState("");
 	useEffect (() => {
-		setPassword(password, pass.current.value)
+
+		
 	}, [pass])
 
 
