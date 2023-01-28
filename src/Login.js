@@ -11,6 +11,7 @@ function Login () {
 			console.log('cookies!')
 			console.log(document.cookie)
 			console.log(cookies)
+		
 	},[])
 
 	const pass = useRef();
@@ -65,8 +66,10 @@ function Login () {
 							}),
 						}
 						fetch('https://sciencecamp.host/login/auth/', opts)
-							.then((response => response.json())
+							.then((response) => response.json())
 							.then((data) => {
+
+								console.log('data')
 								console.log(data)
 								const login = bcrypt.compareSync(pass.current.value, data.password)
 								console.log(login)
@@ -74,7 +77,7 @@ function Login () {
 									window.localStorage.setItem("password", data.password)
 									
 									// set cookie here
-									document.cookie = data.password
+									// document.cookie = data.password
 
 									console.log(user.current.value)
 									console.log(data)
@@ -85,7 +88,7 @@ function Login () {
 								}
 							})
 						// make a post request
-					)}
+					}
 				}>
 				<Link to="/login">
 					<legend className="login-legend">

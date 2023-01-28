@@ -46,7 +46,7 @@ app.use(session({
 	},
 	resave: true,
 	saveUninitialized: true,
-	secret: "secret",
+	secret: process.env.secret,
 	cookie: {
 		httpOnly: false,
 		domain: "sciencecamp.host",
@@ -67,8 +67,7 @@ const credentials = {
 	key: fs.readFileSync("./.ssl/key.pem")
 }
 
-const server = https.createServer(credentials, app)
-server.listen(443, ip)
+const server = https.createServer(credentials, app).listen(443, ip)
 
 app.get ('/img', (req, res) => {
 	res.sendFile(path.join(__dirname,'clouds.png'))
@@ -138,7 +137,7 @@ app.post('/login/auth', (req, res) => {
   mongoose.connect(process.env.uri)
 	var db = mongoose.connection
 	req.session.visits++
-	db.collection("campers").update({username: req.body.username}, { $set: {"latest": new Date()}}, {$inc: {"visits": 1}}, function (err, result) {
+	db.collection("campers").updateMany({username: req.body.username}, { $set: {"latest": new Date()}}, {$inc: {"visits": 1}}, function (err, result) {
 
 		if (err) {
 			throw err
@@ -164,7 +163,7 @@ app.post('/login/auth', (req, res) => {
 
 			req.session.save ((err) => console.log(err))
 
-			res.send({username: _result.username, password: _result.password})
+			res.send({username: req.body.username, password: req.body.password})
 		})
 
 
@@ -228,18 +227,13 @@ app.post ('/register/auth', (req, res) => {
 		mongoose.connect(process.env.uri)	
 		var db = mongoose.connection
 
+		console.log(req.session.cookie)
 		const camper = new Camper ({
-			id: req.session.id,
+			id: uuidv4(),
 			username: req.body.username, 
 			password: req.body.password, 
 			created: req.body.created,
-			latest: req.body.latest,
-			visits: {
-				ip: req.ip,
-				session: req.session,
-				login: Date(),
-				count: 1
-			} 
+			visits: 1
 		})
 
 		var exists = null 
@@ -259,9 +253,18 @@ app.post ('/register/auth', (req, res) => {
 				// new user inherits the uuid: _id of that session
 				console.log("new user.")
 					camper.save (function (err, camper) {
-					console.log('created:\t'+camper.username+' has been created')
-					console.log('session:\t'+req.session)
-					res.send({msg: camper.id+' has been created'})
+					if (err) {
+						console.log("err")
+						console.log(err)
+					}
+					else {
+						console.log('saved')
+						console.log(camper)
+						console.log('created:\t'+req.body.username+' has been created')
+						console.log('session:\t'+req.session)
+						console.log('saved')
+						res.send({msg: req.body.username+' has been created'})
+					}
 				})
 			}
 
@@ -287,7 +290,7 @@ app.post('/login/reset',(req, res) => {
 
 app.post('/api', (req, res) => {
 	req.session.ip = req.ip
-	console.log(res)
+	console.log(req.session.cookie)
 	res.status(200).send({address: req.ip})
 })
 

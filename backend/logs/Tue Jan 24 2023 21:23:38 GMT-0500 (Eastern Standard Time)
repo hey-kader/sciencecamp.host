@@ -1,0 +1,6 @@
+71.27.24.185 - - [25/Jan/2023:02:23:40 +0000] "GET /register HTTP/1.1" 200 666 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+71.27.24.185 - - [25/Jan/2023:02:23:40 +0000] "POST /api HTTP/1.1" 200 26 "https://sciencecamp.host/register" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+71.27.24.185 - - [25/Jan/2023:02:23:40 +0000] "POST /api HTTP/1.1" 200 26 "https://sciencecamp.host/register" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+71.27.24.185 - - [25/Jan/2023:02:23:47 +0000] "GET /menu HTTP/1.1" 200 666 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+71.27.24.185 - - [25/Jan/2023:02:23:47 +0000] "POST /api HTTP/1.1" 200 26 "https://sciencecamp.host/menu" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+71.27.24.185 - - [25/Jan/2023:02:23:47 +0000] "POST /api HTTP/1.1" 200 26 "https://sciencecamp.host/menu" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"

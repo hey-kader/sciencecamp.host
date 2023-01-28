@@ -3,10 +3,9 @@ const {v4: uuidv4} = require ("uuid")
 const Schema = mongoose.Schema
 
 const camperSchema = new Schema ({
-	_id: {
+	id: {
 		type: String,
 		required: true,
-		default: uuidv4()
 	},
 	username: {
 		type: String,
@@ -21,8 +20,9 @@ const camperSchema = new Schema ({
 		default: Date(),
 		required: true
 	},
-	latest: {
-		type: Date
+	visits: {
+		type: Number,
+		default: 1
 	},
 })
 
