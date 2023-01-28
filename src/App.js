@@ -18,10 +18,8 @@ import { useWeb3React } from "@web3-react/core"
 import { injected } from "./components/wallet/Connector"
 
 function App() {
-
 	const { active, account, library, connector, activate, deactivate } = useWeb3React()
 	const [toggle, setToggle] = useState(false);
-
 	useEffect (() => {
 		if (toggle) {
 		}
@@ -96,6 +94,7 @@ fetch('https://sciencecamp.host/api', opts)
 		}
 	}
 
+
   return (
     <div className="App">
       <div className="home"> 
@@ -119,7 +118,7 @@ fetch('https://sciencecamp.host/api', opts)
 					<h6> login </h6>
 					</Link>
 					<br />
-					<Link to="/register">
+					<Link id="register" to="/register">
 						<h6>register </h6>
 					</Link>
 					<div id="connection-status">

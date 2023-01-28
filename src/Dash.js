@@ -23,17 +23,15 @@ fetch('https://sciencecamp.host/dash', opts)
 
 			let online = new Array ()
 			data.users.forEach((item) => {
-				console.log(item.username)
 				online.push(item.username)
 			})
-			console.log(online)
 			document.getElementById("users").innerHTML = online
-
 		})
-	}, [])
-	useEffect (()=> {
-		console.log(window.localStorage.getItem("username"))	
 		setName(name, window.localStorage.getItem("username"))
+		document.getElementById("register").style.visibility = "hidden"
+		document.querySelectorAll("h6").forEach ((element) => {
+			element.style.display = "none"
+		})
 	}, [])
 
 	return (
