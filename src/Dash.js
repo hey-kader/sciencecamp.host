@@ -28,14 +28,16 @@ function Dash () {
 			const usersNode = document.querySelector("div#userlist")
 			for (let i = 0; i < online.length - 1; i++) {
 				const element = document.createElement("h5")
+				// new
+				element.style.color = "green"
 				const text = document.createTextNode(online[i])
 				element.appendChild(text)
+				element.addEventListener("mouseover", (() => {
+					window.alert(online[i])
+				}))
 				usersNode.append(element)
 			}
 			// end
-
-			document.getElementById("users").innerHTML = online
-			setUsers(users, online)
 		})
 		setName(name, window.localStorage.getItem("username"))
 
@@ -55,7 +57,6 @@ function Dash () {
 					logout
 				</button>
 				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
-				<h3 id="users"></h3>
 				<div id="userlist"></div>
 			</div>
 		</>
