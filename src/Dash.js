@@ -25,9 +25,9 @@ function Dash () {
 			})
 
 			// create an ordered list of users
-			const usersNode = document.querySelector("ul")
+			const usersNode = document.querySelector("div#userlist")
 			for (let i = 0; i < online.length - 1; i++) {
-				const element = document.createElement("li")
+				const element = document.createElement("h5")
 				const text = document.createTextNode(online[i])
 				element.appendChild(text)
 				usersNode.append(element)
@@ -56,7 +56,7 @@ function Dash () {
 				</button>
 				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
 				<h3 id="users"></h3>
-				<ul></ul>
+				<div id="userlist"></div>
 			</div>
 		</>
 	)
