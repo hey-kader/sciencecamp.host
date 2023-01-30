@@ -95,8 +95,8 @@ fetch('https://sciencecamp.host/api', opts)
 	}
 
 	useEffect (() => {
-		if (window.localStorage.getItem("password")) {
-			window.alert(localStorage.getItem("username"))	
+if (window.localStorage.getItem("password") && (window.location.href == "https://sciencecamp.host/" || window.location.href == "https://sciencecamp.host") ) {
+			window.location.href = 'https://sciencecamp.host/dash'
 			}
 		else {
 		}
