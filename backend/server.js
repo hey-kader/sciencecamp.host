@@ -187,6 +187,7 @@ app.post('/login/auth', (req, res) => {
 
 
 app.post ('/dash', (req, res) => {
+	console.log(req.cookies)
 	let names = new Array()
 	Camper.find({})
 		.then((data)=> {
@@ -222,7 +223,7 @@ app.post ('/register/auth', (req, res) => {
 		mongoose.connect(process.env.uri)	
 		var db = mongoose.connection
 
-		console.log(req.session.cookie)
+		console.log(req.cookies)
 		const camper = new Camper ({
 			id: uuidv4(),
 			username: req.body.username, 
@@ -294,4 +295,3 @@ app.listen (port, ip,  () => {
 	console.log('http://'+ip+':'+port)
 })
 */
-

@@ -21,7 +21,7 @@ function Dash () {
 			setUsers(users, data.users)
 			let online = new Array ()
 			data.users.forEach((item) => {
-				online.push(item.username)
+				online.push(item)
 			})
 
 			// create an ordered list of users
@@ -30,10 +30,10 @@ function Dash () {
 				const element = document.createElement("h5")
 				// new
 				element.style.color = "green"
-				const text = document.createTextNode(online[i])
+				const text = document.createTextNode(online[i].username)
 				element.appendChild(text)
 				element.addEventListener("mouseover", (() => {
-					window.alert(online[i])
+					window.alert(online[i].visits)
 				}))
 				usersNode.append(element)
 			}
