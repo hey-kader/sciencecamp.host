@@ -78,8 +78,6 @@ app.get('/', (req, res) => {
 
 	console.log('test')
 	console.warn('test')
-	console.log(req.session)
-	req.session.visits++
 	
 	console.log(req.session)
 	res.sendFile(path.join('public', 'index.html'))
@@ -136,8 +134,7 @@ app.post('/login/auth', (req, res) => {
 	
   mongoose.connect(process.env.uri)
 	var db = mongoose.connection
-	req.session.visits++
-	db.collection("campers").updateMany({username: req.body.username}, { $set: {"latest": new Date()}}, {$inc: {"visits": 1}}, function (err, result) {
+	db.collection("campers").updateOne({username: req.body.username}, { $set: {"latest": new Date()}}, {"visits": {$inc: 1}}, function (err, result) {
 
 		if (err) {
 			throw err
@@ -160,20 +157,18 @@ app.post('/login/auth', (req, res) => {
 			console.log(req.body.username+':\t(login attempt)')
 			req.session.password = req.body.password
 			req.session.username = req.body.username 
+			db.collection("campers").updateOne({username: req.body.username}, {$inc: {visits: 1}})
 
 			req.session.save ((err) => console.log(err))
 
 			res.send({username: req.body.username, password: req.body.password})
-		})
+			})
 
-
-
-
-		}
-		else {
-			console.log("user does not exist.")
-			res.send({errmesg: "user does not exist"})
-		}
+			}
+			else {
+				console.log("user does not exist.")
+				res.send({errmesg: "user does not exist"})
+			}
 
 	})
 	//console.log(req.body)

@@ -94,6 +94,14 @@ fetch('https://sciencecamp.host/api', opts)
 		}
 	}
 
+	useEffect (() => {
+		if (window.localStorage.getItem("password")) {
+			window.alert(localStorage.getItem("username"))	
+			}
+		else {
+		}
+	},[])
+
 
   return (
     <div className="App">
@@ -111,7 +119,7 @@ fetch('https://sciencecamp.host/api', opts)
 					<br />
 
           <Link to="/menu">
-						<h6>- menu </h6>
+						<h6> menu </h6>
 					</Link>
 					<br />
 					<Link to="/login">

@@ -21,9 +21,13 @@ const camperSchema = new Schema ({
 		required: true
 	},
 	visits: {
-		type: Number,
-		default: 1
+		type: Number
 	},
 })
+
+camperSchema.methods.visit = function() {
+	this.visits++
+	console.log(this.visits)
+}
 
 module.exports = mongoose.model("Camper", camperSchema);
