@@ -14,7 +14,10 @@ function Feed () {
     fetch('https://sciencecamp.host/posts', opts) 
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
+      console.log(data.posts)
+      data.posts.forEach((item) => {
+        console.log(item.title)
+      })
     })
   },[])
 
