@@ -27,6 +27,9 @@ function Post () {
           console.log(data)
         })
       window.alert("sent!")
+      // new
+      title.current.value = ""
+      text.current.value = ""
       }}>
         <legend>post!</legend>
         <input placeholder="title" type="text" ref={title} />
