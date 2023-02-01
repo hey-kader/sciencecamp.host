@@ -1,3 +1,4 @@
+import "./css/Post.css"
 import React, {useRef} from "react"
 
 function Post () {
@@ -28,11 +29,10 @@ function Post () {
       window.alert("sent!")
       }}>
         <legend>post!</legend>
-        <input type="text" ref={title} />
+        <input placeholder="title" type="text" ref={title} />
         <br />
         <textarea ref={text} placeholder="your post here..." id="post" name="post" cols="30" rows="10">
         </textarea>
-        anonymous? <input type="checkbox" />
         <br />
         <input type="submit" />
         <br />
