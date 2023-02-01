@@ -8,10 +8,9 @@
 
 
 h5, h3, h2, p {
-  margin: 0;
+  margin: auto;
   padding: 10px;
-  display: inline|flex;
-  float: right;
+  display: block;
   border-radius: 10px;
   border-style: none
 }

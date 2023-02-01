@@ -1,0 +1,6 @@
+div#post {
+  border-style: solid;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+}
