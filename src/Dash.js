@@ -50,7 +50,7 @@ function Dash () {
 		})
 		setName(name, window.localStorage.getItem("username"))
 
-		document.getElementById("register").style.visibility = "hidden"
+    /*document.getElementById("register").style.visibility = "hidden"*/
 		document.querySelectorAll("h6").forEach ((element) => {
 			element.style.display = "none"
 		})
@@ -59,7 +59,7 @@ function Dash () {
 	return (
 		<>
 			<button onClick={() => {
-				localStorage.setItem("password", "")
+				window.localStorage.setItem("password", "")
 				navigation('/login')
 			}}>
 				logout
