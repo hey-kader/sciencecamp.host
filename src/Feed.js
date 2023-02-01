@@ -3,6 +3,12 @@ import React, {useState, useEffect} from "react"
 function Feed () {
 
 
+  const style = {
+    background: 'orange',
+    borderRadius: '8px',
+    borderStyle: 'solid tomato',
+  }
+
   const [posts, setPosts] = useState()
   useEffect (() => {
     const opts = {
@@ -33,8 +39,13 @@ function Feed () {
         element.append(heading) 
         element.append(usernameLabel)
         element.append(content)
+
         let entryNode = document.getElementById("feed")
+        element.setAttribute('style', style)
+        element.setAttribute('id', 'post')
         entryNode.append(element)
+
+        
         console.log(item)
       
       })

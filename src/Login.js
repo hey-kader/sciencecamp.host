@@ -47,7 +47,7 @@ function Login () {
 		display: "inlineBlock",
 		padding: "0.8rem 0.8rem 0 0.8rem",
 		background: "red",
-		opacity: "40%"
+		opacity: "55%"
 	}
 
 		return (
@@ -80,6 +80,10 @@ function Login () {
 								const login = bcrypt.compareSync(pass.current.value, data.password)
 								console.log(login)
 								if (login == true) {
+
+                  if (window.localStorage.getItem("username") != data.username) {
+                    window.localStorage.setItem("username", data.username)
+                  }
 									window.localStorage.setItem("password", data.password)
 									
 									// set cookie here
