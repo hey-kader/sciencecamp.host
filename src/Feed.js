@@ -6,23 +6,23 @@ function Feed () {
   const [posts, setPosts] = useState()
   useEffect (() => {
     const opts = {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
-      }
+      },
     }
-    fetch('/posts', opts) 
-    .then((response) => {
-      response.json()
-    })
+    fetch('https://sciencecamp.host/posts', opts) 
+    .then((response) => response.json())
     .then((data) => {
-      setPosts(posts, data.posts)
-      console.log(posts)
+      console.log(data)
     })
   },[])
 
   return (
-    <h1>feed</h1>  
+    <>
+      <h1>feed</h1>  
+      <p>{posts}</p>
+    </>
   )
 }
 export default Feed
