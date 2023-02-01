@@ -1,12 +1,11 @@
 * {
 	text-decoration: none;
 	margin: 0;
-	display: inline|block;
+	display: inline|grid;
 }
 
 html {
-  margin: auto;
-	background-image: url('http://localhost:3000/bg2-export.png');
+	background-image: url('https://sciencecamp.host/bg2-export.png');
 	background-size: 100%;
 	opacity: 90%;
 	
@@ -42,7 +41,7 @@ p {
  h6 {
 	color: #aaaaaa;
 	font-size: 120%;
-	width: 120%;
+	/*width: 120%;*/
 	height: 8px;
 	padding: 0;
 	margin: 0;
