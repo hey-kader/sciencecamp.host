@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom"
 import {useState, useEffect} from "react"
+import Post from "./Post.js"
 import './css/Dash.css'
 
 function Dash () {
@@ -28,12 +29,16 @@ function Dash () {
 			const usersNode = document.querySelector("div#userlist")
 			for (let i = 0; i < online.length; i++) {
 				const element = document.createElement("h5")
+
 				// new
-				element.style.color = "green"
+				element.style.color = "black"
+				element.style.borderRadius = "5%"
+				element.style.background = "lightgray"
+				
 				const text = document.createTextNode(online[i].username)
 				element.appendChild(text)
 				element.addEventListener("mouseover", (() => {
-					element.innerHTML = element.innerHTML + "\nvisits: " + online[i].visits
+					element.innerHTML = element.innerHTML + "\nvisits: " + online[i].visits + "\tcreated: \t" + online[i].created
 				}))
 				element.addEventListener("mouseout", (() => {
 					element.innerHTML = online[i].username
@@ -52,16 +57,19 @@ function Dash () {
 
 	return (
 		<>
+			<button onClick={() => {
+				localStorage.setItem("password", "")
+				navigation('/login')
+			}}>
+				logout
+			</button>
 			<div id="dashboard">
-				<button onClick={() => {
-					localStorage.setItem("password", "")
-					navigation('/login')
-				}}>
-					logout
-				</button>
 				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
 				<div id="userlist"></div>
 			</div>
+      <div id="post">
+        <Post />
+      </div>
 		</>
 	)
 }

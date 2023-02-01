@@ -30,4 +30,5 @@ camperSchema.methods.visit = function() {
 	console.log(this.visits)
 }
 
+
 module.exports = mongoose.model("Camper", camperSchema);

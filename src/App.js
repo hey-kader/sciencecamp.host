@@ -95,9 +95,9 @@ fetch('https://sciencecamp.host/api', opts)
 	}
 
 	useEffect (() => {
-if (window.localStorage.getItem("password") && (window.location.href == "https://sciencecamp.host/" || window.location.href == "https://sciencecamp.host") ) {
+    if (window.localStorage.getItem("password") && (window.location.href == "https://sciencecamp.host/" || window.location.href == "https://sciencecamp.host") ) {
 			window.location.href = 'https://sciencecamp.host/dash'
-			}
+    }
 		else {
 		}
 	},[])
@@ -114,9 +114,6 @@ if (window.localStorage.getItem("password") && (window.location.href == "https:/
 					<Link to="/">
 						<h1 id="title">sciencecamp®</h1>
 					</Link>
-
-					<br />
-					<br />
 
           <Link to="/menu">
 						<h6> menu </h6>

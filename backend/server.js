@@ -3,6 +3,7 @@ const bcrypt = require ("bcrypt")
 const mongoose = require ("mongoose")
 const db = require ("./model/db")
 const Camper = require ('./model/camper')
+const Post = require ('./model/post')
 var fs = require ("fs")
 var morgan = require ("morgan")
 const https = require ("https")
@@ -295,3 +296,23 @@ app.listen (port, ip,  () => {
 	console.log('http://'+ip+':'+port)
 })
 */
+
+
+app.post('/dash/post', (req, res) => {
+  // title, username, and text are attached to req.body
+  console.log('post!!')
+  console.log(req.body)
+  const post = new Post({
+    username: req.body.username,
+    title: req.body.title,
+    text: req.body.text
+  })
+  post.save(function (err, post) {
+    console.log('post saved in db.')
+    res.status(200).send({msg: 'posted ok.'})
+
+  }) 
+})
+
+
+
