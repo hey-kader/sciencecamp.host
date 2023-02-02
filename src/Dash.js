@@ -71,7 +71,24 @@ function Dash () {
       .then((data) => {
         console.log(data) 
       })
+    window.addEventListener("beforeunload", function (e) {
+      e.preventDefault() 
+      e.returnValue = ''
+        const opts = {
+          "method": "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: sessionStorage.getItem("username")
+          })
+        }
+        fetch("https://sciencecamp.host/offline", opts)
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+    })
   },[])
+
 	return (
 		<>
 			<button onClick={() => {

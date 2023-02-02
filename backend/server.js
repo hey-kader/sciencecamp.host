@@ -346,11 +346,11 @@ app.post('/online', (req, res) => {
 app.post('/offline', (req, res) => {
   // remove req.body.username from online list
   if (req.body.username) {
-    Online.find({})
+    Online.find({username: req.body.username})
       .then((data) => {
         if (data) {
-
-          console.log('remove '+req.body.username)
+          Online.deleteOne({username: req.body.username})
+          .then((data) => console.log(data))
         }  
       })
 
