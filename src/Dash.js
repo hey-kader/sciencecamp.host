@@ -55,7 +55,23 @@ function Dash () {
 			element.style.display = "none"
 		})
 	}, [])
-
+  const [online, setOnline] = useState()
+  useEffect(() => {
+    const opts = {
+      method: "POST", 
+      headers: {
+        "Content-Type":"application/json"
+       },
+      body: JSON.stringify({
+        username: sessionStorage.getItem("username")
+      }) 
+    }
+    fetch('https://sciencecamp.host/online', opts) 
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data) 
+      })
+  },[])
 	return (
 		<>
 			<button onClick={() => {

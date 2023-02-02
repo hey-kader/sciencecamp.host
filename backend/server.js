@@ -4,6 +4,7 @@ const mongoose = require ("mongoose")
 const db = require ("./model/db")
 const Camper = require ('./model/camper')
 const Post = require ('./model/post')
+const Online = require ('./model/online')
 var fs = require ("fs")
 var morgan = require ("morgan")
 const https = require ("https")
@@ -196,7 +197,7 @@ app.post ('/dash', (req, res) => {
 				"Content-Type": "application/json"
 			}
 
-			res.status(200).send({users: data})
+			res.status(200).send({"users": data})
 			})
 
 })
@@ -327,7 +328,33 @@ app.get('/posts', (req, res) => {
   })
 })
 
+app.post('/online', (req, res) => {
 
+  // add req.body.username to online list
+  if (req.body.username) {
+    const online = new Online({username: req.body.username})
+    online.save(() => {
+      console.log('saved online user: '+req.body.username)
+    })
+    Online.find({})
+    .then((data) => {
+      res.status(200).send({users: data})
+    })
+  }
+})
 
+app.post('/offline', (req, res) => {
+  // remove req.body.username from online list
+  if (req.body.username) {
+    Online.find({})
+      .then((data) => {
+        if (data) {
+
+          console.log('remove '+req.body.username)
+        }  
+      })
+
+  }
+})
 
 

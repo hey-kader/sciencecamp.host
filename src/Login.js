@@ -85,6 +85,7 @@ function Login () {
                     window.localStorage.setItem("username", data.username)
                   }
 									window.localStorage.setItem("password", data.password)
+                  sessionStorage.setItem("username", data.username)
 									
 									// set cookie here
 									// document.cookie = data.password
