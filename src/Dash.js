@@ -92,25 +92,25 @@ function Dash () {
 
 	return (
 		<>
-			<button onClick={() => {
-				window.localStorage.setItem("password", "")
-        // new
-        window.sessionStorage.removeItem("username")
-				navigation('/login')
-			}}>
-				logout
-			</button>
-			<div id="dashboard">
-				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
-				<div id="userlist"></div>
-			</div>
-      <div id="posts">
-        <Post />
-      </div>
-      <div id="feed">
-        <Feed />
-      </div>
-		</>
+    <button onClick={() => {
+      window.localStorage.setItem("password", "")
+      // new
+      window.sessionStorage.removeItem("username")
+      navigation('/login')
+    }}>
+      logout
+    </button>
+    <div id="dashboard">
+      <h2 id="username" >{window.localStorage.getItem("username")}</h2>
+      <div id="userlist"></div>
+    </div>
+    <div id="posts">
+      <Post />
+    </div>
+    <div id="feed">
+      <Feed />
+    </div>
+  </>
 	)
 }
 

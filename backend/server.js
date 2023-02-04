@@ -9,7 +9,7 @@ var fs = require ("fs")
 var morgan = require ("morgan")
 const https = require ("https")
 
-mongoose.set({strictQuery: false})
+mongoose.set({strictQuery: true})
 
 const path = require ("path")
 
@@ -308,7 +308,8 @@ app.post('/dash/post', (req, res) => {
   const post = new Post({
     username: req.body.username,
     title: req.body.title,
-    text: req.body.text
+    text: req.body.text,
+    color: req.body.color
   })
   post.save(function (err, post) {
     console.log('post saved in db.')
@@ -348,7 +349,7 @@ app.post('/offline', (req, res) => {
     Online.find({username: req.body.username})
       .then((data) => {
         if (data) {
-          Online.deleteOne({username: req.body.username})
+          Online.deleteMany({username: req.body.username})
           .then((data) => console.log(data))
         }  
       })

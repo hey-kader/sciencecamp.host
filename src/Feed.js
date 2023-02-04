@@ -36,6 +36,8 @@ function Feed () {
         var content = document.createElement("p")
         content.setAttribute("id", "post-content")
 
+        element.style.backgroundColor = item.color
+
         let usernameTextNode = document.createTextNode(item.username)
         let titleTextNode = document.createTextNode(item.title)
         let textTextNode = document.createTextNode(item.text)
@@ -53,11 +55,12 @@ function Feed () {
         element.setAttribute('style', {style})
         */
         element.setAttribute('id', 'post')
+
         entryNode.append(element)
         
       })
     })
-  })
+  },[posts])
   useEffect(() => {
     const opts = {
       "method": "GET",
