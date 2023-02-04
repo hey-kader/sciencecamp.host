@@ -32,8 +32,8 @@ function Dash () {
 				const element = document.createElement("h5")
 
 				// new
-				element.style.color = "black"
-				element.style.borderRadius = "5%"
+				element.style.color = "orange"
+				element.style.borderRadius = "0%"
 				element.style.background = "lightgray"
 				
 				const text = document.createTextNode(online[i].username)
@@ -104,7 +104,7 @@ function Dash () {
 				<h2 id="username" >{window.localStorage.getItem("username")}</h2>
 				<div id="userlist"></div>
 			</div>
-      <div id="post">
+      <div id="posts">
         <Post />
       </div>
       <div id="feed">

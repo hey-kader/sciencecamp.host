@@ -1,6 +1,17 @@
 div#post {
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 9px;
   display: block;
-  margin: auto;
+  margin: 10px;
+  padding: 5px;
+}
+
+h3#post-heading {
+  font-size: 100%;
+  opacity: 90%;
+  color: lightblue;
+  margin: 10px;
+  padding: 5px;
+  border-weight: 2px;
+  border-style: inset;
 }
