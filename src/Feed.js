@@ -55,19 +55,12 @@ function Feed () {
       "method": "GET",
       headers: {
         "Content-Type": "application/json" 
-      },
-      body: JSON.stringify({
-        
-      })
+      }
     }
-    setInterval(1000, (() => {
+    setInterval((() => {
       fetch("https://sciencecamp.host/posts", opts)
-      .then((response) => response.json())
-      .then((data) => {
-        window.alert(data.length)
-        })
-      })
-    )
+      .then((response) => console.log(response))
+      }),1000)
   },[posts])
 
   return (

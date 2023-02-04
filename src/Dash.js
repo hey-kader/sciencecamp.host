@@ -50,7 +50,7 @@ function Dash () {
 		})
 		setName(name, window.localStorage.getItem("username"))
 
-/* hide the 'login' 'register' 'home' <Link>s, brought to you by react-router-dom (v6?) */
+    /* hide the 'login' 'register' 'home' <Link>s, brought to you by react-router-dom (v6?) */
 		document.querySelectorAll("h6").forEach ((element) => {
 			element.style.display = "none"
 		})
@@ -73,7 +73,8 @@ function Dash () {
       })
     window.addEventListener("beforeunload", function (e) {
       e.preventDefault() 
-      e.returnValue = ''
+      //e.returnValue = ''
+      //new
         const opts = {
           "method": "POST",
           headers: {
