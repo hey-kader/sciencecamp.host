@@ -59,8 +59,15 @@ function Feed () {
     }
     setInterval((() => {
       fetch("https://sciencecamp.host/posts", opts)
-      .then((response) => console.log(response))
-      }),1000)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.posts)
+        /*
+        
+        setPosts(data.posts)
+        */
+      })
+    }),1000)
   },[posts])
 
   return (

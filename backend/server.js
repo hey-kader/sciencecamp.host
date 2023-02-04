@@ -289,7 +289,9 @@ app.post('/api', (req, res) => {
   if (req.session.cookie) {
     res.status(201).send({id: req.session.cookie})
   }
-	res.status(200).send({address: req.ip})
+  else {
+    res.status(200).send({address: req.ip})
+  }
 })
 
 /*
@@ -319,11 +321,6 @@ app.post('/dash/post', (req, res) => {
 app.get('/posts', (req, res) => {
   Post.find({})
   .then((data) => {
-    const opts = {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
     res.status(200).send({posts: data})
   })
 })
