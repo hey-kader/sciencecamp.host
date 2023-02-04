@@ -1,8 +1,10 @@
 #username {
 	color: tomato;
-  border-color: orange;
-  border-style: groove;
+  border-color: tomato;
+  border-style: outset;
   border-radius: 10px;
+  border-color: tomato;
+  border-width: 20px;
 }
 
 #dashboard {

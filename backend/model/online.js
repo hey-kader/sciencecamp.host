@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const onlineSchema = new Schema ({
   username:{
-    type: String
+    type: String,
+    unique: true
   },
   location: {
     type: String

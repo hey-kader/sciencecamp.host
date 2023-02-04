@@ -72,8 +72,8 @@ function Dash () {
         console.log(data) 
       })
     window.addEventListener("beforeunload", function (e) {
-      e.preventDefault() 
-      //e.returnValue = ''
+      //e.preventDefault() 
+      e.returnValue = ''
       //new
         const opts = {
           "method": "POST",
@@ -94,6 +94,8 @@ function Dash () {
 		<>
 			<button onClick={() => {
 				window.localStorage.setItem("password", "")
+        // new
+        window.sessionStorage.removeItem("username")
 				navigation('/login')
 			}}>
 				logout
