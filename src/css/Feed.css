@@ -1,5 +1,7 @@
 div#post {
+  background: white;
   border-style: solid;
+  border-color: gray;
   border-radius: 9px;
   display: block;
   margin: 10px;
@@ -7,11 +9,29 @@ div#post {
 }
 
 h3#post-heading {
+  background: white;
   font-size: 100%;
   opacity: 90%;
   color: lightblue;
   margin: 10px;
   padding: 5px;
-  border-weight: 2px;
-  border-style: inset;
+  border-size: 2px;
+  border-style: solid;
+}
+
+
+#post-content {
+  margin: 10px;
+  padding: 5px;
+  border-style: outset;
+  font-size: 80%;
+}
+
+#post-user {
+  margin: 10px;
+  color: darkgray;
+  padding: 5px;
+  border-style: none;
+  opacity: 90%;
+  font-size: 90%;
 }
