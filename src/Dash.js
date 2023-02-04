@@ -50,7 +50,7 @@ function Dash () {
 		})
 		setName(name, window.localStorage.getItem("username"))
 
-    /*document.getElementById("register").style.visibility = "hidden"*/
+/* hide the 'login' 'register' 'home' <Link>s, brought to you by react-router-dom (v6?) */
 		document.querySelectorAll("h6").forEach ((element) => {
 			element.style.display = "none"
 		})

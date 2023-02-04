@@ -22,6 +22,7 @@ function Feed () {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.posts)
+      setPosts(posts, data.posts)
       data.posts.forEach((item) => {
         var element = document.createElement("div")
 
@@ -37,26 +38,41 @@ function Feed () {
         usernameLabel.appendChild(usernameTextNode)
         content.appendChild(textTextNode)
 
-        element.append(heading) 
         element.append(usernameLabel)
+        element.append(heading) 
         element.append(content)
 
         let entryNode = document.getElementById("feed")
         element.setAttribute('style', style)
         element.setAttribute('id', 'post')
         entryNode.append(element)
-
         
-        console.log(item)
-      
       })
     })
-  },[])
+  })
+  useEffect(() => {
+    const opts = {
+      "method": "GET",
+      headers: {
+        "Content-Type": "application/json" 
+      },
+      body: JSON.stringify({
+        
+      })
+    }
+    setInterval(1000, (() => {
+      fetch("https://sciencecamp.host/posts", opts)
+      .then((response) => response.json())
+      .then((data) => {
+        window.alert(data.length)
+        })
+      })
+    )
+  },[posts])
 
   return (
     <>
       <h1 id="feed" >feed</h1>  
-      <p>{posts}</p>
     </>
   )
 }

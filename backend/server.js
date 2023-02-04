@@ -78,9 +78,6 @@ app.get ('/img', (req, res) => {
 
 app.get('/', (req, res) => {
 
-	console.log('test')
-	console.warn('test')
-	
 	console.log(req.session)
 	res.sendFile(path.join('public', 'index.html'))
 })
@@ -289,6 +286,9 @@ app.post('/login/reset',(req, res) => {
 app.post('/api', (req, res) => {
 	req.session.ip = req.ip
 	console.log(req.session.cookie)
+  if (req.session.cookie) {
+    res.status(201).send({id: req.session.cookie})
+  }
 	res.status(200).send({address: req.ip})
 })
 
@@ -327,6 +327,8 @@ app.get('/posts', (req, res) => {
     res.status(200).send({posts: data})
   })
 })
+
+
 
 app.post('/online', (req, res) => {
 

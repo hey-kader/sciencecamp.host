@@ -24,10 +24,11 @@ function Post () {
       fetch("https://sciencecamp.host/dash/post", opts)
         .then ((response) => response.json())
         .then ((data) => {
-          console.log(data)
+          console.log(data.msg)
         })
-      window.alert("sent!")
       // new
+      window.location.href = "https://sciencecamp.host/dash"
+
       title.current.value = ""
       text.current.value = ""
       }}>
