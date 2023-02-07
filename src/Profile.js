@@ -4,8 +4,12 @@ function makepost (title, text, created) {
   var root = document.createElement("div")
   var end = document.createElement("h1")
   var entText = document.createTextNode(title)
+  var content = document.createElement("p")
+  var _text = document.createTextNode(text)
+  content.appendChild(_text)
   end.appendChild(entText)
   root.append(end)
+  root.append(content)
   document.getElementById("entry").append(root)
   
 }
