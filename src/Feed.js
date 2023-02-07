@@ -37,7 +37,7 @@ function Feed () {
         content.setAttribute("id", "post-content")
 
         element.style.backgroundColor = item.color
-
+        element.style.width = window.innerWidth
         let usernameTextNode = document.createTextNode(item.username)
         let titleTextNode = document.createTextNode(item.title)
         let textTextNode = document.createTextNode(item.text)

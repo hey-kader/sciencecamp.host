@@ -357,4 +357,12 @@ app.post('/offline', (req, res) => {
   }
 })
 
+app.get('/dash/:id', (req, res) => {
+  const id = req.params.id 
+  console.log(id)
+  Post.find({username: id})
+  .then((data) => {
+    res.status(200).send({data: data})
+  })
+})
 

@@ -1,12 +1,12 @@
 * {
 	text-decoration: none;
 	margin: 0;
-	display: inline|grid;
 }
 
 html {
 	background-image: url('https://sciencecamp.host/bg2-export.png');
 	background-size: 100%;
+  width: 100%;
 	opacity: 90%;
 	
 }
@@ -30,8 +30,9 @@ html {
 }
 
 div {
+  display: block;
 	text-align: left;
-	justify-content: space-around;;
+	justify-content: space-around;
 }
 
 p {

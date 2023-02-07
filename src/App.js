@@ -9,6 +9,7 @@ import Register from './Register'
 import Reset from './Reset'
 import Thanks from './Thanks'
 import Dash from './Dash'
+import Profile from './Profile'
 import React, {useEffect, useState} from 'react'
 import cookie from "react-cookie"
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
@@ -139,6 +140,8 @@ fetch('https://sciencecamp.host/api', opts)
 						<Route path="register" element={<Register/>} />
 						<Route path="/dash" element={<Dash />}/>
 						<Route path="thanks" element={<Thanks />}/>
+            <Route path="/dash/:id" element={<Profile />}/>
+
           </Routes>
         </BrowserRouter>
       </div>

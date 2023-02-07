@@ -44,6 +44,9 @@ function Dash () {
 				element.addEventListener("mouseout", (() => {
 					element.innerHTML = online[i].username
 				}))
+        element.addEventListener("click", (() => {
+        navigation('/dash/'+online[i].username)
+        }))
 				usersNode.append(element)
 			}
 			// end
@@ -93,7 +96,6 @@ function Dash () {
 	return (
 		<>
     <button onClick={() => {
-      window.localStorage.setItem("password", "")
       // new
       window.sessionStorage.removeItem("username")
       navigation('/login')
