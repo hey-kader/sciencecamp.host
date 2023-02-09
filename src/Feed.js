@@ -3,7 +3,6 @@ import './css/Feed.css'
 
 function Feed () {
 
-
   const style = {
     background: 'orange',
     borderRadius: '8px',
@@ -86,12 +85,15 @@ function Feed () {
   },[posts])
 
   return (
-    <div>
-      <br />
-      <br />
-      <p id="postcount"></p>
-      <h1 id="feed" >feed</h1>  
-    </div>
+      <div>
+          <br />
+          <br />
+        <div>
+
+          <p id="postcount"></p>
+        </div>
+        <h1 id="feed" >feed</h1>  
+      </div>
   )
 }
 export default Feed

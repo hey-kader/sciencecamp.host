@@ -1,4 +1,5 @@
 import {Component} from "react"
+import './css/Profile.css'
 
 function makepost (title, text, created, color) {
 
@@ -8,10 +9,21 @@ function makepost (title, text, created, color) {
   var entText = document.createTextNode(title)
   var content = document.createElement("p")
   var _text = document.createTextNode(text)
+  var createdAt = document.createElement("h7")
+  // have to truncate this number
+  function relativeDate (datestr) {
+    var epochdiff = Date.now() - Date.parse(datestr)
+    epochdiff = epochdiff/60/60/60
+    return Math.trunc(epochdiff) + "m ago"
+  }
+  var createdAtTextNode = document.createTextNode(relativeDate(created))
 
+  createdAt.appendChild(createdAtTextNode)
+  createdAt.setAttribute('id', 'timestamp')
   content.appendChild(_text)
   end.appendChild(entText)
 
+  root.append(createdAt)
   root.append(end)
   root.append(content)
   root.style.backgroundColor = color
@@ -50,10 +62,11 @@ class Profile extends Component {
         document.getElementById("entry").innerHTML = "no posts"
       }
 
-      this.state.data.forEach((item) => {
+      for (var i = 0; i < this.state.data.length; i++) {
+        var item = this.state.data[this.state.data.length - 1 - i]
         console.log(item.title)
         makepost(item.title, item.text, item.created, item.color)
-      })
+      }
     })
     console.log(this.state.data)
   }

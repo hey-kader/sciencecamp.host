@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {useState, useEffect} from "react"
 import Post from "./Post.js"
 import Feed from "./Feed.js"
@@ -95,6 +95,7 @@ function Dash () {
 
 	return (
 		<>
+    <Link to="/feed"> feed </Link>
     <button onClick={() => {
       // new
       window.sessionStorage.removeItem("username")
@@ -109,9 +110,6 @@ function Dash () {
 
         <div id="posts">
           <Post />
-        <div id="feed">
-        <Feed />
-        </div>
         </div>
 
     </div>

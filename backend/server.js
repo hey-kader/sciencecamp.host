@@ -120,6 +120,11 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+app.get('/feed', (req, res) => {
+	req.session.cookie.path = "/feed"
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.get ('/dash', (req, res) => {
 	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
 	req.session.cookie.path = "/dash"
