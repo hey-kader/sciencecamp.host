@@ -96,14 +96,7 @@ function Dash () {
 	return (
 		<>
     <Link to="/feed"> feed </Link>
-    <button onClick={() => {
-      // new
-      window.sessionStorage.removeItem("username")
-      window.localStorage.removeItem("password")
-      navigation('/login')
-    }}>
-      logout
-    </button>
+    <Link to="/logout"> logout </Link>
       <div id="dashboard">
         <h2 id="username" >{window.localStorage.getItem("username")}</h2>
         <div id="userlist"></div>

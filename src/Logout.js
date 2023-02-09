@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react'
+import {useNavigate} from "react-router-dom"
 
 function Logout () {
+  let navigation = useNavigate()
   useEffect(()=>{
     window.sessionStorage.removeItem("username")
     window.localStorage.removeItem("password")
-    window.location.href = "https://sciencecamp.host/thanks"
+    navigation('/login')
   },[])
   return;
 }
