@@ -32,8 +32,10 @@ class Profile extends Component {
         "Content-Type": "application/json"
       }
     }
+
   var name = window.location.pathname
   name = name.split('/')[name.split('/').length -1]
+
   fetch("https://sciencecamp.host/api/"+name, opts)
     .then ((response) => response.json())
     .then ((data) => {
@@ -43,7 +45,10 @@ class Profile extends Component {
       })
       console.log(this.state.data.length)
       //new
-      document.getElementById("username").innerHTML = this.state.data[0].username
+      document.getElementById("username").innerHTML = name 
+      if (this.state.data.length === 0) {
+        document.getElementById("entry").innerHTML = "no posts"
+      }
 
       this.state.data.forEach((item) => {
         console.log(item.title)
