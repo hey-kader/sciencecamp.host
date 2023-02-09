@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import {Link} from "react-router-dom"
 import './css/Feed.css'
 
 function Feed () {
@@ -86,6 +87,8 @@ function Feed () {
 
   return (
       <div>
+        <Link to="/dash">Dash</Link>
+        <Link to="/logout">Logout</Link>
           <br />
           <br />
         <div>

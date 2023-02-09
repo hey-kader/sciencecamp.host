@@ -5,6 +5,7 @@ import That from './That.js'
 import Home from './Home.js'
 import Menu from './Menu'
 import Login from './Login'
+import Logout from './Logout'
 import Register from './Register'
 import Reset from './Reset'
 import Thanks from './Thanks'
@@ -137,6 +138,7 @@ fetch('https://sciencecamp.host/api', opts)
 						<Route path="/menu/this" element={<This />} />
 						<Route path="/menu/that" element={<That />} />
 						<Route path="login" element={<Login/>} />
+						<Route path="logout" element={<Logout/>} />
 						<Route path="/login/reset" element={<Reset />} />
 						<Route path="register" element={<Register/>} />
 						<Route path="/dash" element={<Dash />}/>

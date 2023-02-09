@@ -110,6 +110,11 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+app.get('/logout', (req, res) => {
+	req.session.destroy()
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.get ('/login/reset', (req, res) => {
 	req.session.cookie.path = "/login/reset"
 	res.sendFile(path.join(__dirname, 'build', 'index.html'))
