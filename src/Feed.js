@@ -26,7 +26,8 @@ function Feed () {
     .then((data) => {
       console.log(data.posts)
       setPosts(posts, data.posts)
-      data.posts.forEach((item) => {
+      for (var i = 0; i < data.posts.length; i++) {
+        const item = data.posts[data.posts.length - 1 - i]
         var element = document.createElement("div")
 
         var heading = document.createElement("h3")
@@ -58,7 +59,7 @@ function Feed () {
 
         entryNode.append(element)
         
-      })
+      }
     })
   },[posts])
   useEffect(() => {

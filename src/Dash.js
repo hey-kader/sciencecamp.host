@@ -98,6 +98,7 @@ function Dash () {
     <button onClick={() => {
       // new
       window.sessionStorage.removeItem("username")
+      window.localStorage.removeItem("password")
       navigation('/login')
     }}>
       logout
