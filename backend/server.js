@@ -129,6 +129,15 @@ app.get ('/dash', (req, res) => {
 	
 })
 
+app.get ('/dash/:id', (req, res) => {
+	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
+	req.session.cookie.path = "/dash"
+
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+//res.redirect('/login')
+	
+})
+
 app.post('/login/auth', (req, res) => {
 	
   mongoose.connect(process.env.uri)
@@ -357,7 +366,7 @@ app.post('/offline', (req, res) => {
   }
 })
 
-app.get('/dash/:id', (req, res) => {
+app.get('/api/:id', (req, res) => {
   const id = req.params.id 
   console.log(id)
   Post.find({username: id})

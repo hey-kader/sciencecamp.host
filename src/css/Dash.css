@@ -1,3 +1,6 @@
+#postform {
+  display: block;
+}
 #username {
 	color: tomato;
   border-color: tomato;
@@ -10,13 +13,12 @@
 
 h5, h3, h2, p {
   margin: auto;
-  padding: 10px;
   display: block;
   border-radius: 10px;
   border-style: none
 }
 
 h5:active {
-  border-style: inset groove;
-  border-radius: 16px;
+  background: linear-gradient(blue, lightblue);
+
 }

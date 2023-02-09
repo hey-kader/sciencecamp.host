@@ -102,15 +102,17 @@ function Dash () {
     }}>
       logout
     </button>
-    <div id="dashboard">
-      <h2 id="username" >{window.localStorage.getItem("username")}</h2>
-      <div id="userlist"></div>
-    </div>
-    <div id="posts">
-      <Post />
-    </div>
-    <div id="feed">
-      <Feed />
+      <div id="dashboard">
+        <h2 id="username" >{window.localStorage.getItem("username")}</h2>
+        <div id="userlist"></div>
+
+        <div id="posts">
+          <Post />
+        <div id="feed">
+        <Feed />
+        </div>
+        </div>
+
     </div>
   </>
 	)

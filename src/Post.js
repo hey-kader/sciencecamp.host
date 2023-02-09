@@ -50,6 +50,8 @@ function Post () {
         <input type="submit" />
         <br />
       </form>
+        <br />
+        <br />
     </div>
   )
 

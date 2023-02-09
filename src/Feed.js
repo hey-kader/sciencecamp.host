@@ -85,10 +85,12 @@ function Feed () {
   },[posts])
 
   return (
-    <>
+    <div>
+      <br />
+      <br />
       <p id="postcount"></p>
       <h1 id="feed" >feed</h1>  
-    </>
+    </div>
   )
 }
 export default Feed

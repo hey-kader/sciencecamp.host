@@ -3,13 +3,13 @@ div#post {
   border-style: solid;
   border-color: gray;
   border-radius: 9px;
-  display: block;
-  margin: 10px;
-  width: 100%;
-  padding: 5px;
 }
 
-h3#post-heading {
+#posts {
+  display: inline;
+}
+
+h3, h4 {
   background: white;
   font-size: 100%;
   opacity: 90%;

@@ -5,10 +5,12 @@
 
 html {
 	background-image: url('https://sciencecamp.host/bg2-export.png');
-	background-size: 100%;
-  width: 100%;
 	opacity: 90%;
+  width: 100%;
 	
+}
+#postform {
+  display: block;
 }
 
 #balance, #wallet {
@@ -27,12 +29,6 @@ html {
 
 #wallet code:hover {
 	color: tomato;
-}
-
-div {
-  display: block;
-	text-align: left;
-	justify-content: space-around;
 }
 
 p {
