@@ -1,13 +1,6 @@
-#postform {
-  display: block;
-}
 #username {
-	color: tomato;
-  border-color: tomato;
-  border-style: outset;
-  border-radius: 10px;
-  border-color: tomato;
-  border-width: 5px;
+	color: #fabaaa;
+  margin: 10px;
 }
 
 

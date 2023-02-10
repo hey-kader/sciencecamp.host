@@ -2,9 +2,10 @@ const mongoose = require ("mongoose")
 const Schema = mongoose.Schema
 
 const onlineSchema = new Schema ({
-  username:{
+  username: {
     type: String,
-    unique: true
+    unique: true,
+    dropDups: true
   },
   location: {
     type: String

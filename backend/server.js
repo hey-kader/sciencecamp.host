@@ -9,6 +9,10 @@ var fs = require ("fs")
 var morgan = require ("morgan")
 const https = require ("https")
 
+//dev purposes only
+//const http = require ("http")
+//end
+
 mongoose.set({strictQuery: true})
 
 const path = require ("path")
@@ -70,6 +74,7 @@ const credentials = {
 }
 
 const server = https.createServer(credentials, app).listen(443, ip)
+//const http_server = http.createServer(app).listen(80, ip)
 
 app.get ('/img', (req, res) => {
 	res.sendFile(path.join(__dirname,'clouds.png'))
@@ -146,7 +151,7 @@ app.get ('/dash', (req, res) => {
 
 app.get ('/dash/:id', (req, res) => {
 	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
-	req.session.cookie.path = "/dash"
+	req.session.cookie.path = "/"+req.params.id
 
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 //res.redirect('/login')
@@ -358,10 +363,21 @@ app.post('/online', (req, res) => {
 
   // add req.body.username to online list
   if (req.body.username) {
-    const online = new Online({username: req.body.username})
-    online.save(() => {
-      console.log('saved online user: '+req.body.username)
+    Online.findOne({username: req.body.username})
+    .then((result) => {
+      if (result) {
+        console.log(result)
+        console.log('user already logged as online!')
+      }
+      else {
+        const online = new Online({username: req.body.username})
+        online.save(() => {
+          console.log('(new) online user: '+req.body.username)
+        })
+        
+      }
     })
+
     Online.find({})
     .then((data) => {
       res.status(200).send({users: data})
@@ -369,14 +385,14 @@ app.post('/online', (req, res) => {
   }
 })
 
-app.post('/offline', (req, res) => {
+app.post('/logout', (req, res) => {
   // remove req.body.username from online list
   if (req.body.username) {
-    Online.find({username: req.body.username})
+    Online.findOne({username: req.body.username})
       .then((data) => {
         if (data) {
-          Online.deleteMany({username: req.body.username})
-          .then((data) => console.log(data))
+          Online.deleteOne({username: req.body.username})
+          .then((data) => res.status(200).send(data))
         }  
       })
 

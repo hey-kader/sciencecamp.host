@@ -37,6 +37,17 @@ function Feed () {
         var content = document.createElement("p")
         content.setAttribute("id", "post-content")
 
+        function relativeDate (datestr) {
+          var epochdiff = Date.now() - Date.parse(datestr)
+          epochdiff = epochdiff/60/60/60
+          return Math.trunc(epochdiff) + "m ago"
+        }
+
+        var timestamp = document.createElement("p")
+        var timestampTextNode = document.createTextNode(relativeDate(item.created))
+        timestamp.appendChild(timestampTextNode)
+        timestamp.setAttribute('id', 'timestamp')
+
         element.style.backgroundColor = item.color
         element.style.width = window.innerWidth
         let usernameTextNode = document.createTextNode(item.username)
@@ -47,6 +58,7 @@ function Feed () {
         usernameLabel.appendChild(usernameTextNode)
         content.appendChild(textTextNode)
 
+        element.append(timestamp)
         element.append(usernameLabel)
         element.append(heading) 
         element.append(content)

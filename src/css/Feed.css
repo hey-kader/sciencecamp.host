@@ -2,8 +2,16 @@ div#post {
   background: white;
   border-style: none;
   margin: 0;
+  display: inline| flex;
 }
 
+#timestamp {
+  float: right;
+  opacity: 50%;
+  font-size: 40%;
+  padding-top: 0;
+  margin-top: 0;
+}
 
 h3, h4 {
   font-size: 60%;

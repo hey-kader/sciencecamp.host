@@ -54,7 +54,7 @@ function Dash () {
     <Link to="/feed"> feed </Link>
     <Link to="/search"> search </Link>
     <Link to="/logout"> logout </Link>
-      <h3 id="postcount"></h3>
+    <h3 id="postcount"></h3>
       <div id="dashboard">
         <h2 id="username" >{window.localStorage.getItem("username")}</h2>
         <div id="userlist"></div>
