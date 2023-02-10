@@ -20,6 +20,7 @@ function Logout () {
       })
     window.sessionStorage.removeItem("username")
     window.localStorage.removeItem("password")
+    window.location.href = "https://sciencecamp.host"
   },[])
   return;
 }

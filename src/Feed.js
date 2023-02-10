@@ -89,8 +89,9 @@ function Feed () {
       .then((response) => response.json())
       .then((data) => {
         //console.log(data.posts.length)
-        if (document.getElementById("postcount").innerHTML != data.posts.length) {
-          document.getElementById("postcount").innerHTML = "posts: " + data.posts.length
+        if (window.sessionStorage.getItem("postcount")!= data.posts.length) {
+          document.getElementById("postcount").style.color = "tomato"
+          document.getElementById("postcount").innerHTML = "new posts "
         }
         //new
         /*

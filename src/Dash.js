@@ -48,6 +48,39 @@ function Dash () {
     element.remove()
   })
   },[])
+  useEffect(() => {
+  const opts = {
+    "method": "get",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
+  function checkposts () {
+    fetch("https://sciencecamp.host/posts", opts)
+    .then ((response) => response.json())
+    .then((data) => {
+      console.log(data.posts)
+      console.log('length test: ' + data.posts.length)
+      console.log('length test2 ' + window.sessionStorage.getItem("postcount"))
+      if (window.sessionStorage.getItem("postcount") != data.posts.length) {
+        console.log('new post!')
+        //data.posts[data.posts.length - 1]
+        function appendPost(post) {
+          const enter = document.getElementById("username")
+          var node = document.createElement("div")
+          var nodeTextElement = document.createTextNode("new post from "+post.username)
+          node.appendChild(nodeTextElement)
+          enter.append(node)
+        }
+        appendPost(data.posts[data.posts.length - 1])
+        window.sessionStorage.setItem("postcount", data.posts.length)
+      }
+      window.sessionStorage.setItem("postcount", data.posts.length)
+    })
+  }
+  setInterval(checkposts, 1000)
+
+  }, [])
 
 	return (
 		<>

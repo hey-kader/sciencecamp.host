@@ -31,8 +31,9 @@ function Search () {
 
 				// new
 				element.style.color = "orange"
+        element.style.opacity = "60%"
 				element.style.borderRadius = "0%"
-				element.style.background = "lightgray"
+        element.style.background = "linear-gradient(skyblue, skyblue, skyblue, lightblue)"
 				
 				const text = document.createTextNode(online[i].username)
 				element.appendChild(text)
@@ -47,7 +48,7 @@ function Search () {
         }))
 				usersNode.append(element)
 			}
-			// end
+		// end
 		})
 		setName(name, window.localStorage.getItem("username"))
 
