@@ -1,35 +1,25 @@
 div#post {
   background: white;
-  border-style: solid;
-  border-color: gray;
-  border-radius: 9px;
+  border-style: none;
+  margin: 0;
 }
 
-#posts {
-  display: inline;
-}
 
 h3, h4 {
-  background: white;
-  font-size: 100%;
-  opacity: 90%;
-  color: lightblue;
-  margin: 10px;
-  padding: 5px;
-  border-size: 2px;
-  border-style: solid;
+  font-size: 60%;
+  opacity: 80%;
+  color: gray;
+  border-style: none;
+  padding-left: 10px;
 }
 
 
 #post-content {
-  margin: 10px;
   padding: 5px;
-  border-style: outset;
-  font-size: 80%;
+  font-size: 50%;
 }
 
 #post-user {
-  margin: 10px;
   color: darkgray;
   padding: 5px;
   border-style: none;

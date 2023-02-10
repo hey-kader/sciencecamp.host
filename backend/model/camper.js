@@ -23,6 +23,9 @@ const camperSchema = new Schema ({
 	visits: {
 		type: Number
 	},
+  posts: {
+    type: [mongoose.SchemaTypes.ObjectId],
+  }
 })
 
 camperSchema.methods.visit = function() {

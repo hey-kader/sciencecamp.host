@@ -12,6 +12,7 @@ import Thanks from './Thanks'
 import Dash from './Dash'
 import Profile from './Profile'
 import Feed from './Feed'
+import Search from './Search'
 import React, {useEffect, useState} from 'react'
 import cookie from "react-cookie"
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
@@ -144,6 +145,7 @@ fetch('https://sciencecamp.host/api', opts)
 						<Route path="/dash" element={<Dash />}/>
 						<Route path="thanks" element={<Thanks />}/>
             <Route path="/feed" element={<Feed />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/dash/:id" element={<Profile />}/>
 
           </Routes>

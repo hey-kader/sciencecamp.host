@@ -130,6 +130,11 @@ app.get('/feed', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+app.get('/search', (req, res) => {
+	req.session.cookie.path = "/search"
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.get ('/dash', (req, res) => {
 	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
 	req.session.cookie.path = "/dash"
@@ -332,6 +337,8 @@ app.post('/dash/post', (req, res) => {
   })
   post.save(function (err, post) {
     console.log('post saved in db.')
+    console.log('post below!')
+    console.log(post)
     res.status(200).send({msg: 'posted ok.'})
 
   }) 

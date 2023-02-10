@@ -1,4 +1,5 @@
 import {Component} from "react"
+import {Link} from "react-router-dom"
 import './css/Profile.css'
 
 function makepost (title, text, created, color) {
@@ -16,6 +17,7 @@ function makepost (title, text, created, color) {
     epochdiff = epochdiff/60/60/60
     return Math.trunc(epochdiff) + "m ago"
   }
+
   var createdAtTextNode = document.createTextNode(relativeDate(created))
 
   createdAt.appendChild(createdAtTextNode)
@@ -66,15 +68,17 @@ class Profile extends Component {
         var item = this.state.data[this.state.data.length - 1 - i]
         console.log(item.title)
         makepost(item.title, item.text, item.created, item.color)
-      }
-    })
+      } })
     console.log(this.state.data)
+    document.querySelectorAll("h6").forEach((element) => {
+      element.remove()
+    })
   }
 
   render () {
     return (
       <>
-      <button onClick={() => window.location.href = "https://sciencecamp.host/dash"}>back</button>
+      <Link to="/search">back</Link>
       <h2 id="postcount"></h2>
       <h1 id="username"></h1>
       <div id="entry"></div>

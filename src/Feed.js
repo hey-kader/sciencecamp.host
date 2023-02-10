@@ -61,6 +61,9 @@ function Feed () {
         
       }
     })
+  document.querySelectorAll("h6").forEach((element) => {
+    element.remove()
+  })
   },[posts])
   useEffect(() => {
     const opts = {
@@ -88,14 +91,13 @@ function Feed () {
   return (
       <div>
         <Link to="/dash">Dash</Link>
-        <Link to="/logout">Logout</Link>
           <br />
           <br />
         <div>
-
-          <p id="postcount"></p>
+          <h3 id="postcount"></h3>
         </div>
-        <h1 id="feed" >feed</h1>  
+        <h1>feed</h1>  
+        <div id="feed"></div>
       </div>
   )
 }
