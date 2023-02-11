@@ -1,3 +1,0 @@
-71.27.24.185 - - [27/Jan/2023:10:53:51 +0000] "POST /login/auth/ HTTP/1.1" 200 91 "https://sciencecamp.host/login" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15"
-71.27.24.185 - - [27/Jan/2023:10:54:38 +0000] "POST /register/auth/ HTTP/1.1" 200 30 "https://sciencecamp.host/register" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15"
-71.27.24.185 - - [27/Jan/2023:10:54:41 +0000] "POST /login/auth/ HTTP/1.1" 200 92 "https://sciencecamp.host/login" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15"
