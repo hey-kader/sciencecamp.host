@@ -79,7 +79,7 @@ function Register () {
 							}
 							fetch ('https://sciencecamp.host/register/auth/', opts)
 								.then(response => response.json())
-								.then(data => {
+								.then((data) => {
 									console.log(data._id)
 									let sessioncookie = data._id + '; '+ "SameSite=None; Secure"
 									if (data.exists == true) {

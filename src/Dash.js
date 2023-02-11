@@ -1,7 +1,7 @@
 import {Link, useNavigate} from "react-router-dom"
 import {useState, useEffect} from "react"
 import Post from "./Post.js"
-import Feed from "./Feed.js"
+import Upload from "./Upload.js"
 import './css/Dash.css'
 
 function Dash () {
@@ -94,6 +94,9 @@ function Dash () {
 
         <div id="posts">
           <Post />
+        </div>
+        <div id="upload">
+          <Upload />
         </div>
 
     </div>

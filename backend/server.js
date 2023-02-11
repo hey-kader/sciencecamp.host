@@ -3,11 +3,17 @@ const bcrypt = require ("bcrypt")
 const mongoose = require ("mongoose")
 const db = require ("./model/db")
 const Camper = require ('./model/camper')
+
 const Post = require ('./model/post')
 const Online = require ('./model/online')
 var fs = require ("fs")
-var morgan = require ("morgan")
 const https = require ("https")
+
+var morgan = require ("morgan")
+
+const multer = require ("multer")
+
+
 
 //dev purposes only
 //const http = require ("http")
@@ -407,4 +413,30 @@ app.get('/api/:id', (req, res) => {
     res.status(200).send({data: data})
   })
 })
+
+const storage = multer.diskStorage({
+  destination: './uploads',
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-'  + path.extname(file.originalname))
+  }
+})
+// filesize limit 8mb
+const upload = multer({
+  storage: storage,
+  limits: {filesize: 1000000000},
+}).single("avatar")
+
+app.post('/upload', (req, res) => {
+  console.log(req.file)
+  upload(req, res, (err) => {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      console.log(req.file)
+      res.status(201).send('got it.')
+    }
+  })
+})
+
 
