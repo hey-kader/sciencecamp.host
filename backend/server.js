@@ -433,7 +433,7 @@ app.post('/upload', (req, res) => {
     }
     else {
       console.log(req.file)
-      res.status(200).send('got it.')
+      res.status(200).send({msg: 'got it.'})
     }
   })
 })
