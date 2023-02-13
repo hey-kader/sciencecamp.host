@@ -401,7 +401,6 @@ app.post('/logout', (req, res) => {
           .then((data) => res.status(200).send(data))
         }  
       })
-
   }
 })
 
@@ -417,9 +416,10 @@ app.get('/api/:id', (req, res) => {
 const storage = multer.diskStorage({
   destination: './uploads',
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-'  + path.extname(file.originalname))
+    cb(null, Date.now() + path.extname(file.originalname))
   }
 })
+
 // filesize limit 8mb
 const upload = multer({
   storage: storage,
@@ -427,16 +427,13 @@ const upload = multer({
 }).single("avatar")
 
 app.post('/upload', (req, res) => {
-  console.log(req.file)
   upload(req, res, (err) => {
     if (err) {
       console.log(err)
     }
     else {
       console.log(req.file)
-      res.status(201).send('got it.')
+      res.status(200).send('got it.')
     }
   })
 })
-
-

@@ -13,14 +13,14 @@ function Upload () {
       const opts = {
         "method":"POST",
         body: data 
-        }
+      }
       fetch("https://sciencecamp.host/upload", opts)
         .then ((response) => response.json())
         .then ((data) => {
           console.log(data)
         })
-    }}/>
-    </form>
-    )
+    }} />
+  </form>
+  )
 }
 export default Upload
