@@ -407,10 +407,24 @@ app.post('/logout', (req, res) => {
 app.get('/api/:id', (req, res) => {
   const id = req.params.id 
   console.log(id)
+
+  let posts = new Array () 
   Post.find({username: id})
   .then((data) => {
-    res.status(200).send({data: data})
+    data.forEach((item) => {
+    posts.push(item)
   })
+  })
+  
+  Camper.find({username: id})
+  .then((data)=> {
+     let d = data[0]
+     console.log(d)
+     res.status(200).send({url: d, data: posts})
+
+
+  })
+
 })
 
 const storage = multer.diskStorage({
@@ -434,7 +448,7 @@ app.post('/upload', (req, res) => {
     else {
       var username = req.file.originalname.split('-')[req.file.originalname.split('-').length - 1].split('.')[0]
       var db = mongoose.connection
-      db.collection("campers").updateOne({username: username}, {$set: {profilepic_url: 'https://sciencecamp.host/uploads/'+req.file.filename}})
+      db.collection("campers").updateOne({username: username}, {$set: {profilepic: 'https://sciencecamp.host/uploads/'+req.file.filename}})
       console.log(req.file)
       res.status(200).send({filename: req.file.filename})
     }

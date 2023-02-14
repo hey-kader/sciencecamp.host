@@ -53,22 +53,32 @@ class Profile extends Component {
   fetch("https://sciencecamp.host/api/"+name, opts)
     .then ((response) => response.json())
     .then ((data) => {
+      //new
+      console.warn(data.url.profilepic)
+      let img = document.createElement('img')
+      img.setAttribute('src', data.url.profilepic)
+      document.getElementById('avatar').append(img)
+      //end
       data.data.forEach((item) => {
         console.log(item)
         this.state.data.push(item)
       })
       console.log(this.state.data.length)
+      console.warn(data)
       //new
       document.getElementById("username").innerHTML = name 
-      if (this.state.data.length === 0) {
-        document.getElementById("entry").innerHTML = "no posts"
-      }
+
+
 
       for (var i = 0; i < this.state.data.length; i++) {
         var item = this.state.data[this.state.data.length - 1 - i]
-        console.log(item.title)
         makepost(item.title, item.text, item.created, item.color)
-      } })
+      } 
+      if (this.state.data.length == 0) {
+        document.getElementById("entry").innerHTML = "no posts"
+      }
+    })
+
     console.log(this.state.data)
     document.querySelectorAll("h6").forEach((element) => {
       element.remove()
@@ -81,6 +91,7 @@ class Profile extends Component {
       <Link to="/search">back</Link>
       <h2 id="postcount"></h2>
       <h1 id="username"></h1>
+      <div id="avatar"></div>
       <div id="entry"></div>
       </>
     ) 
