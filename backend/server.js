@@ -432,6 +432,9 @@ app.post('/upload', (req, res) => {
       console.log(err)
     }
     else {
+      var username = req.file.originalname.split('-')[req.file.originalname.split('-').length - 1].split('.')[0]
+      var db = mongoose.connection
+      db.collection("campers").updateOne({username: username}, {$set: {profilepic_url: 'https://sciencecamp.host/uploads/'+req.file.filename}})
       console.log(req.file)
       res.status(200).send({filename: req.file.filename})
     }
