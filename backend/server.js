@@ -433,7 +433,11 @@ app.post('/upload', (req, res) => {
     }
     else {
       console.log(req.file)
-      res.status(200).send({msg: 'got it.'})
+      res.status(200).send({filename: req.file.filename})
     }
   })
+})
+
+app.get ('/uploads/:img', (req, res) => {
+  res.status(201).send(fs.readFileSync('./uploads/'+req.params.img))
 })

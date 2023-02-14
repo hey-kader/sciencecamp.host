@@ -3,6 +3,8 @@ function Upload () {
   const img = useRef()
   useEffect(() => {
     if (window.localStorage.getItem("avatar")) {
+      document.getElementById("img-upload").remove()
+
       var img = document.createElement("img")
       img.setAttribute('src', window.localStorage.getItem("avatar"))
       img.setAttribute('width', '180px')
@@ -10,7 +12,7 @@ function Upload () {
       img.style.borderStyle = "solid 1px"
       img.style.borderRadius = "12px"
       document.querySelector("legend#entry").append(img)
-      document.getElementById("img-upload").remove()
+
     }
   },[])
   return (
@@ -21,7 +23,7 @@ function Upload () {
     <input name="avatar" ref={img} type="file" id="img-upload" onChange={(e) => {
       const file = document.getElementById("img-upload").files[0]
       const data = new FormData()
-      data.append('avatar', file, file.name)
+      data.append('avatar', file, file.name.split('.')[0]+'-'+window.localStorage.getItem("username")+".png")
       window.localStorage.setItem("avatar", URL.createObjectURL(file))
       const opts = {
         "method":"POST",
@@ -30,8 +32,9 @@ function Upload () {
       fetch("https://sciencecamp.host/upload", opts)
         .then ((response) => response.json())
         .then ((_data) => {
-          console.log(_data.msg)
-          if (_data.msg) {
+          console.log(_data.filename)
+          if (_data.filename) {
+            window.localStorage.setItem('profile-pic-url', 'https://sciencecamp.host/uploads/'+_data.filename)
             var img = document.createElement("img")
             img.setAttribute('src', window.localStorage.getItem("avatar"))
             img.setAttribute('width', "190px")
@@ -43,7 +46,7 @@ function Upload () {
 
           // append success message
           var h = document.createElement("h6")
-          var tn = document.createTextNode(_data.msg)
+          var tn = document.createTextNode(_data.filename)
           h.appendChild(tn)
           document.querySelector("legend#entry").append(img)
           document.getElementById("img-upload").remove()
