@@ -78,7 +78,6 @@ function Dash () {
       window.sessionStorage.setItem("postcount", data.posts.length)
     })
   }
-  setInterval(checkposts, 1000)
 
   }, [])
 

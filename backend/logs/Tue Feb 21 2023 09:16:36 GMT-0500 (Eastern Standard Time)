@@ -1,0 +1,4 @@
+10.1.10.210 - - [21/Feb/2023:14:16:51 +0000] "POST /dash HTTP/1.1" 200 1544 "https://sciencecamp.host/search" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+10.1.10.210 - - [21/Feb/2023:14:16:52 +0000] "GET /api/alex HTTP/1.1" 200 698 "https://sciencecamp.host/dash/alex" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+10.1.10.210 - - [21/Feb/2023:14:16:52 +0000] "GET /dash/favicon.ico HTTP/1.1" 200 666 "https://sciencecamp.host/dash/alex" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+10.1.10.210 - - [21/Feb/2023:14:16:52 +0000] "GET /uploads/1676975889497.png HTTP/1.1" 201 20357 "https://sciencecamp.host/dash/alex" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"

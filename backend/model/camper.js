@@ -24,7 +24,7 @@ const camperSchema = new Schema ({
 		type: Number
 	},
   posts: {
-    type: [mongoose.SchemaTypes.ObjectId],
+    type: [Object],
   }
 })
 

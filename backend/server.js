@@ -93,9 +93,11 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join('public', 'index.html'))
 })
 
+/*
 app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
+*/
 app.get('/menu', (req, res) => {
 	req.session.cookie.path = "/menu"
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
@@ -146,6 +148,7 @@ app.get('/search', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+
 app.get ('/dash', (req, res) => {
 	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
 	req.session.cookie.path = "/dash"
@@ -157,7 +160,6 @@ app.get ('/dash', (req, res) => {
 
 app.get ('/dash/:id', (req, res) => {
 	// only redirect to /login if there is no localstorage.getItem("password") on the client's side
-	req.session.cookie.path = "/"+req.params.id
 
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 //res.redirect('/login')
@@ -236,8 +238,6 @@ app.post ('/dash', (req, res) => {
 
 
 app.get ('/campers', (req, res) => {
-	const users = []
-	
 	Camper.find({}).then((data)=> res.status(200).send(data))
 })
 
@@ -340,13 +340,19 @@ app.post('/dash/post', (req, res) => {
   // title, username, and text are attached to req.body
   console.log('post!!')
   console.log(req.body)
-  const post = new Post({
+   
+  const post = {
     username: req.body.username,
     title: req.body.title,
     text: req.body.text,
     color: req.body.color
+  }
+  Camper.updateOne({username: req.body.username}, {$push: {posts: post}})
+  .then((result) => {
+    console.log(result)
   })
-  post.save(function (err, post) {
+  const gpost = new Post(post)
+  gpost.save(function (err, post) {
     console.log('post saved in db.')
     console.log('post below!')
     console.log(post)
@@ -406,6 +412,10 @@ app.post('/logout', (req, res) => {
 
 app.get('/api/:id', (req, res) => {
   const id = req.params.id 
+  req.session.cookie.path = '/api/' + id
+req.session.save(() => {
+  console.log(req.session)
+})
   console.log(id)
 
   let posts = new Array () 
@@ -413,14 +423,15 @@ app.get('/api/:id', (req, res) => {
   .then((data) => {
     data.forEach((item) => {
     posts.push(item)
+    console.log(posts)
   })
   })
   
   Camper.find({username: id})
   .then((data)=> {
      let d = data[0]
-     console.log(d)
-     res.status(200).send({url: d, data: posts})
+     console.log(data)
+     res.status(200).send({url: d, posts: data.posts})
 
 
   })
