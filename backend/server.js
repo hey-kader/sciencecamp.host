@@ -16,15 +16,15 @@ const multer = require ("multer")
 
 
 //dev purposes only
-//const http = require ("http")
+const http = require ("http")
 //end
 
 mongoose.set({strictQuery: true})
 
 const path = require ("path")
 
-const ip = process.env.ip
-const port = process.env.port
+const ip = process.env.IP
+const port = process.env.PORT
 
 const express = require ("express")
 const bodyparser = require ( "body-parser" )
@@ -74,12 +74,14 @@ app.use(session({
 	}),
 }))
 
+
 const credentials = {
-	cert: fs.readFileSync("./.ssl/cert.pem"),
-	key: fs.readFileSync("./.ssl/key.pem")
+  cert: fs.readFileSync('ssl/sciencecamp.crt'),
+  key: fs.readFileSync('ssl/sciencecamp.key')
 }
 
-const server = https.createServer(credentials, app).listen(443, ip)
+
+const server = https.createServer(credentials, app).listen(port, ip)
 //const http_server = http.createServer(app).listen(80, ip)
 
 app.get ('/img', (req, res) => {
@@ -88,16 +90,15 @@ app.get ('/img', (req, res) => {
 
 
 app.get('/', (req, res) => {
-
 	console.log(req.session)
 	res.sendFile(path.join('public', 'index.html'))
 })
 
-/*
+
 app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
-*/
+
 app.get('/menu', (req, res) => {
 	req.session.cookie.path = "/menu"
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
@@ -459,7 +460,7 @@ app.post('/upload', (req, res) => {
     else {
       var username = req.file.originalname.split('-')[req.file.originalname.split('-').length - 1].split('.')[0]
       var db = mongoose.connection
-      db.collection("campers").updateOne({username: username}, {$set: {profilepic: 'https://sciencecamp.host/uploads/'+req.file.filename}})
+      db.collection("campers").updateOne({username: username}, {$set: {profilepic: 'http://sciencecamp.host/uploads/'+req.file.filename}})
       console.log(req.file)
       res.status(200).send({filename: req.file.filename})
     }
