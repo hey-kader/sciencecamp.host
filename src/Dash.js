@@ -22,7 +22,7 @@ function Dash () {
         username: window.localStorage.getItem("username")
       }) 
     }
-    fetch('https://sciencecamp.host/online', opts) 
+    fetch('https://kader.pub/online', opts) 
       .then((response) => response.json())
       .then((data) => {
         console.log(data) 
@@ -40,7 +40,7 @@ function Dash () {
             username: localStorage.getItem("username")
           })
         }
-        fetch("https://sciencecamp.host/offline", opts)
+        fetch("https://kader.pub/offline", opts)
           .then((response) => response.json())
           .then((data) => console.log(data))
     })
@@ -56,7 +56,7 @@ function Dash () {
     }
   }
   function checkposts () {
-    fetch("https://sciencecamp.host/posts", opts)
+    fetch("https://kader.pub/posts", opts)
     .then ((response) => response.json())
     .then((data) => {
       console.log(data.posts)

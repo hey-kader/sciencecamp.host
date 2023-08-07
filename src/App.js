@@ -68,7 +68,7 @@ function App() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({address: account})
     }
-fetch('https://sciencecamp.host/api', opts)
+fetch('https://kader.pub/api', opts)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message)
@@ -99,8 +99,8 @@ fetch('https://sciencecamp.host/api', opts)
 	}
 
 	useEffect (() => {
-    if (window.localStorage.getItem("password") && (window.location.href == "https://sciencecamp.host/" || window.location.href == "https://sciencecamp.host") ) {
-			window.location.href = 'https://sciencecamp.host/dash'
+    if (window.localStorage.getItem("password") && (window.location.href == "https://kader.pub/" || window.location.href == "https://sciencecamp.host") ) {
+			window.location.href = 'https://kader.pub/dash'
     }
 		else {
 		}

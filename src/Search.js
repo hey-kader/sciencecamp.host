@@ -15,7 +15,7 @@ function Search () {
 			msg: 'requesting a list of all users from /dash via post req'
 		}),
 	}
-	fetch('https://sciencecamp.host/dash', opts)
+	fetch('https://kader.pub/dash', opts)
 		.then((response) => response.json())
 		.then((data) => {
 			setUsers(users, data.users)

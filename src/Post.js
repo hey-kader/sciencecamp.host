@@ -26,13 +26,13 @@ function Post () {
           color: color.current.value
         })
       }
-      fetch("https://sciencecamp.host/dash/post", opts)
+      fetch("https://kader.pub/dash/post", opts)
         .then ((response) => response.json())
         .then ((data) => {
           console.log(data.msg)
         })
       // new
-      window.location.href = "https://sciencecamp.host/dash"
+      window.location.href = "https://kader.pub/dash"
 
       title.current.value = ""
       text.current.value = ""

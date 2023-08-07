@@ -67,7 +67,7 @@ class Profile extends React.Component {
       }
     }
     
-    fetch("https://sciencecamp.host/api/"+name, opts)
+    fetch("https://kader.pub/api/"+name, opts)
     .then ((response) => response.json())
     .then ((dat) => {
 

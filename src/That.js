@@ -13,23 +13,6 @@ function That () {
 			</aside>
 			<br />
 			<div id="img">
-
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
-				<h3>filler text filler text filler text</h3>
 				<h3>filler text filler text filler text</h3>
 			</div>
 			<hr />

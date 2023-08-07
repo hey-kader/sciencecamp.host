@@ -48,7 +48,7 @@ function Upload () {
         "method":"POST",
         body: data 
       }
-      fetch("https://sciencecamp.host/upload", opts)
+      fetch("https://kader.pub/upload", opts)
         .then ((response) => response.json())
         .then ((_data) => {
           console.log(_data.filename)

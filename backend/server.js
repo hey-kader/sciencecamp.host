@@ -23,8 +23,8 @@ mongoose.set({strictQuery: true})
 
 const path = require ("path")
 
-const ip = process.env.IP
-const port = process.env.PORT
+const ip = process.env.ip
+const port = process.env.port
 
 const express = require ("express")
 const bodyparser = require ( "body-parser" )
@@ -61,13 +61,13 @@ app.use(session({
 	secret: process.env.secret,
 	cookie: {
 		httpOnly: false,
-		domain: "sciencecamp.host",
+		domain: "kader.pub",
 		secure: true,
 		samesite: true
 	},
 	store: MongoStore.create({
 		client: mongoose.connection.getClient(),
-		dbName: 'sciencecamp',
+		dbName: 'test',
 		collectionName: 'sessions',
 		stringify: false
 
@@ -76,8 +76,8 @@ app.use(session({
 
 
 const credentials = {
-  cert: fs.readFileSync('ssl/sciencecamp.crt'),
-  key: fs.readFileSync('ssl/sciencecamp.key')
+  cert: fs.readFileSync('ssl/kader-pub.crt'),
+  key: fs.readFileSync('ssl/kader-pub.key')
 }
 
 
@@ -460,7 +460,7 @@ app.post('/upload', (req, res) => {
     else {
       var username = req.file.originalname.split('-')[req.file.originalname.split('-').length - 1].split('.')[0]
       var db = mongoose.connection
-      db.collection("campers").updateOne({username: username}, {$set: {profilepic: 'http://sciencecamp.host/uploads/'+req.file.filename}})
+      db.collection("campers").updateOne({username: username}, {$set: {profilepic: 'https://kader.pub/uploads/'+req.file.filename}})
       console.log(req.file)
       res.status(200).send({filename: req.file.filename})
     }

@@ -77,7 +77,7 @@ function Register () {
 									latest: Date()
 								})
 							}
-							fetch ('https://sciencecamp.host/register/auth/', opts)
+							fetch ('https://kader.pub/register/auth/', opts)
 								.then(response => response.json())
 								.then((data) => {
 									console.log(data._id)

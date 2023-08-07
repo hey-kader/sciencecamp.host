@@ -21,7 +21,7 @@ function Feed () {
         "Content-Type": "application/json"
       },
     }
-    fetch('https://sciencecamp.host/posts', opts) 
+    fetch('https://kader.pub/posts', opts) 
     .then((response) => response.json())
     .then((data) => {
       console.log(data.posts)
@@ -85,7 +85,7 @@ function Feed () {
       }
     }
     setInterval((() => {
-      fetch("https://sciencecamp.host/posts", opts)
+      fetch("https://kader.pub/posts", opts)
       .then((response) => response.json())
       .then((data) => {
         //console.log(data.posts.length)

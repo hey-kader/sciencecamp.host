@@ -13,14 +13,14 @@ function Logout () {
         username: window.localStorage.getItem("username")
       })
     }
-    fetch("https://sciencecamp.host/logout", opts)
+    fetch("https://kader.pub/logout", opts)
       .then ((response) => response.json())
       .then((data) => {
         console.log(data)
       })
     window.sessionStorage.removeItem("username")
     window.localStorage.removeItem("password")
-    window.location.href = "https://sciencecamp.host"
+    window.location.href = "https://kader.pub"
   },[])
   return;
 }

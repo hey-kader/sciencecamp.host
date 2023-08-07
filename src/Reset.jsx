@@ -31,7 +31,7 @@ function Reset () {
 						"msg": "popingggg!"
 					})
 				}
-				fetch("https://sciencecamp.host/login/reset", opts)
+				fetch("https://kader.pub/login/reset", opts)
 					.then((response) => response.json())
 					.then((data) => {
 						console.log(data)

@@ -71,7 +71,7 @@ function Login () {
 								latest: Date()
 							}),
 						}
-						fetch('https://sciencecamp.host/login/auth/', opts)
+						fetch('https://kader.pub/login/auth/', opts)
 							.then((response) => response.json())
 							.then((data) => {
 
