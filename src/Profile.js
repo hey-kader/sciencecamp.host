@@ -101,7 +101,7 @@ class Profile extends React.Component {
       <h2 id="postcount"></h2>
       <h1 id="username">{this.state.name}</h1>
       <div id="avatar">
-        <img src={this.state.avatar} />
+        <img style={{width: "100px", height: "100px"}} src={this.state.avatar} />
       </div>
       <div id="entry"></div>
       </>

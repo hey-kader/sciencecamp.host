@@ -6,11 +6,11 @@ function Upload () {
 
       var img = document.createElement("img")
       img.setAttribute('src', window.localStorage.getItem("avatar"))
-      img.setAttribute('width', '180px')
-      img.setAttribute('height', '180px')
+      img.setAttribute('width', '200px')
+      img.setAttribute('height', '200px')
       img.setAttribute('id', 'avatar-img')
-      img.style.borderStyle = "solid 1px"
-      img.style.borderRadius = "12px"
+      img.style.borderStyle = "solid 2px"
+      img.style.borderRadius = "20px"
       document.querySelector("legend#entry").append(img)
       document.querySelector("input#img-upload").style.visibility = "hidden"
 
@@ -51,20 +51,19 @@ function Upload () {
       fetch("https://kader.pub/upload", opts)
         .then ((response) => response.json())
         .then ((_data) => {
-          console.log(_data.filename)
           if (_data.filename) {
             var img = document.createElement("img")
             img.setAttribute('src', window.localStorage.getItem("avatar"))
             img.setAttribute('id', 'avatar-img')
-            img.style.width = "90px"
-            img.style.height = "90px"
-            img.style.borderStyle = "solid 1px"
-            img.style.borderRadius = "12px"
+            img.style.width = "200px"
+            img.style.height = "200px"
+            img.style.borderStyle = "solid 2px"
+            img.style.borderRadius = "20px"
           }
 
           // append success message
           var b = document.createElement("button")
-          var tn = document.createTextNode("reset")
+          var tn = document.createTextNode("change")
           b.appendChild(tn)
           b.setAttribute("id", "reset-img")
           b.addEventListener("click", function () {
@@ -74,13 +73,12 @@ function Upload () {
               document.getElementById("avatar-img").remove()
               window.localStorage.removeItem("avatar")
               document.getElementById("reset-img").remove()
-
           })
           
 
           document.querySelector("legend#entry").append(img)
           document.querySelector("legend#entry").append(b)
-          document.getElementById("img-upload").style.visibility = "hidden"
+          /* document.getElementById("img-upload").style.visibility = "hidden" */
           
         })
     }} />

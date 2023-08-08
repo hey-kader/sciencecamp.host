@@ -74,8 +74,8 @@ function Dash () {
         }
         appendPost(data.posts[data.posts.length - 1])
         window.sessionStorage.setItem("postcount", data.posts.length)
+				document.getElementById('postcount').innerHTML = data.posts.length + '(+ 1)'
       }
-      window.sessionStorage.setItem("postcount", data.posts.length)
     })
   }
 
@@ -90,7 +90,6 @@ function Dash () {
       <div id="dashboard">
         <h2 id="username" >{window.localStorage.getItem("username")}</h2>
         <div id="userlist"></div>
-
         <div id="posts">
           <Post />
         </div>

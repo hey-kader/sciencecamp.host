@@ -350,6 +350,7 @@ app.post('/dash/post', (req, res) => {
   }
   Camper.updateOne({username: req.body.username}, {$push: {posts: post}})
   .then((result) => {
+		console.log('new post has been pushed to the documents of'+req.body.username)
     console.log(result)
   })
   const gpost = new Post(post)
@@ -357,7 +358,7 @@ app.post('/dash/post', (req, res) => {
     console.log('post saved in db.')
     console.log('post below!')
     console.log(post)
-    res.status(200).send({msg: 'posted ok.'})
+    res.status(201).send({msg: 'posted ok.'})
 
   }) 
 })
@@ -393,7 +394,7 @@ app.post('/online', (req, res) => {
 
     Online.find({})
     .then((data) => {
-      res.status(200).send({users: data})
+      res.status(201).send({users: data})
     })
   }
 })
@@ -406,6 +407,7 @@ app.post('/logout', (req, res) => {
         if (data) {
           Online.deleteOne({username: req.body.username})
           .then((data) => res.status(200).send(data))
+					console.log('logged out: '+req.body.username)
         }  
       })
   }
@@ -421,11 +423,10 @@ req.session.save(() => {
 
   let posts = new Array () 
   Post.find({username: id})
-  .then((data) => {
-    data.forEach((item) => {
-    posts.push(item)
-    console.log(posts)
-  })
+		.then((data) => {
+			data.forEach((item) => {
+			posts.push(item)
+		})
   })
   
   Camper.find({username: id})
@@ -433,8 +434,6 @@ req.session.save(() => {
      let d = data[0]
      console.log(data)
      res.status(200).send({url: d, posts: data.posts})
-
-
   })
 
 })

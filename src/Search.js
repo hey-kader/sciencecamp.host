@@ -12,7 +12,7 @@ function Search () {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({
-			msg: 'requesting a list of all users from /dash via post req'
+			msg: 'requesting a list of all users from /dash'
 		}),
 	}
 	fetch('https://kader.pub/dash', opts)
@@ -27,26 +27,51 @@ function Search () {
 			// create an ordered list of users
 			const usersNode = document.querySelector("div#userlist")
 			for (let i = 0; i < online.length; i++) {
+				const div = document.createElement ("div")
+
+				div.style.border = "solid 1px"
+				div.style.padding = "10px"
+				div.style.margin = "10px"
 				const element = document.createElement("h5")
 
 				// new
 				element.style.color = "orange"
-        element.style.opacity = "60%"
-				element.style.borderRadius = "0%"
-        element.style.background = "linear-gradient(skyblue, skyblue, skyblue, lightblue)"
+        element.style.opacity = "80%"
+				element.style.borderRadius = "13px"
+				element.style.width = "250px"
+				element.style.height = "100px"
+				element.style.padding = "15px"
+				element.style.margin = "15px"
+        element.style.background = "linear-gradient(lightgray, silver, gray)"
 				
 				const text = document.createTextNode(online[i].username)
+
+				/* 
+					var img = document.createElement("img")	
+					img.src = "https://kader.pub/<user>/<img>"
+
+					we need a program on the backend to serve /<user>/<profilepicepoch.png>,
+					and we'll catch it by calling fetch(url, {data => data.json()})
+				  set img.style.width and the like, and we'll be well on our way-
+					(img.style.width, img.style.height, img.border, img.borderRadius, namely).
+					
+				*/
+					
 				element.appendChild(text)
 				element.addEventListener("mouseover", (() => {
-					element.innerHTML = element.innerHTML + "\nvisits: " + online[i].visits + "\tcreated: \t" + online[i].created
+					element.innerHTML = element.innerHTML + "\nvisits: " + online[i].visits + "\tsince: " + online[i].created
+					element.style.opacity = "100%"
 				}))
 				element.addEventListener("mouseout", (() => {
+					element.style.opacity = "60%"
 					element.innerHTML = online[i].username
 				}))
         element.addEventListener("click", (() => {
         navigation('/dash/'+online[i].username)
         }))
-				usersNode.append(element)
+				
+				div.appendChild(element)
+				usersNode.append(div)
 			}
 		// end
 		})
