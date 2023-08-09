@@ -28,8 +28,8 @@ function Search () {
 			const usersNode = document.querySelector("div#userlist")
 			for (let i = 0; i < online.length; i++) {
 				const div = document.createElement ("div")
-
 				div.style.border = "solid 1px"
+				div.style.borderRadius = "5px"
 				div.style.padding = "10px"
 				div.style.margin = "10px"
 				const element = document.createElement("h5")
@@ -38,8 +38,8 @@ function Search () {
 				element.style.color = "orange"
         element.style.opacity = "80%"
 				element.style.borderRadius = "13px"
-				element.style.width = "250px"
-				element.style.height = "100px"
+				element.style.width = "185px"
+				element.style.height = "90x"
 				element.style.padding = "15px"
 				element.style.margin = "15px"
         element.style.background = "linear-gradient(lightgray, silver, gray)"
@@ -47,6 +47,25 @@ function Search () {
 				const text = document.createTextNode(online[i].username)
 
 				/* 
+					update: (8 8 23)
+					we are going to hit the endpoint via
+
+					<script>
+					var url = 'https://kader.pub/api/'+online[i].username
+					const opts = {
+						method: "get",
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify({
+							msg: 'requesting each users (json) file for user previews',
+						}),
+					}
+					fetch (url, opts)
+					.then((response => response.json())
+					.then((data) => {
+						console.log(data.profilepic)
+					})
+					</script>
+					
 					var img = document.createElement("img")	
 					img.src = "https://kader.pub/<user>/<img>"
 
@@ -71,7 +90,15 @@ function Search () {
         }))
 				
 				div.appendChild(element)
+				var sub =  document.createElement('p')
+				var api_hit = "https://kader.pub/api/"+online[i].username
+				const tn = document.createTextNode(api_hit)
+				sub.appendChild(tn)
+				div.append(sub)
+				
 				usersNode.append(div)
+				
+				
 			}
 		// end
 		})
@@ -84,7 +111,7 @@ function Search () {
 	}, [])
   return (
   <div id="search-wrapper">
-    <Link to="/dash">back</Link>
+    <Link to="/dash">return to dashboard</Link>
     <div id="userlist"></div>
   </div>
   )
