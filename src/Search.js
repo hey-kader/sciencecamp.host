@@ -90,11 +90,24 @@ function Search () {
         }))
 				
 				div.appendChild(element)
-				var sub =  document.createElement('p')
 				var api_hit = "https://kader.pub/api/"+online[i].username
-				const tn = document.createTextNode(api_hit)
-				sub.appendChild(tn)
-				div.append(sub)
+				const opts = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}
+				fetch(api_hit, opts)
+				.then((response) => response.json())
+					.then((data) => {
+						var img = document.createElement('img')
+						img.src = data.url.profilepic
+						img.alt = online[i].username
+						img.style.width = "100px"
+						img.style.height = "100px"
+						div.append(img)
+						console.log(data.url.profilepic)
+					})
 				
 				usersNode.append(div)
 				
