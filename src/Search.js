@@ -105,13 +105,15 @@ function Search () {
 						img.alt = online[i].username
 						img.style.width = "100px"
 						img.style.height = "100px"
+						var post = document.createElement('p')
+						var post_tn = document.createTextNode(data.url.posts.length +' posts')
+						post.appendChild(post_tn)
+						
+
 						div.append(img)
-						console.log(data.url.profilepic)
+						div.append(post)
 					})
-				
 				usersNode.append(div)
-				
-				
 			}
 		// end
 		})
